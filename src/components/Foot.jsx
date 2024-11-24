@@ -2,16 +2,16 @@
 export default function Foot() {
     return (
         <>
-            <footer className="container-fluid bg-body-tertiary p-5 pb-1">
+            <footer className="container-fluid bg-body-tertiary p-5 pb-1">s
                 <div className="row">
 
                     <div className="col-6 col-md d-flex flex-column mb-2 justify-content-around">
                         <h5>Social Networks</h5>
                         <div>
-                            <i className="fa-brands fa-facebook fa-beat fa-2xl" style={{color: "#2568ef"}}></i>
-                            <i className="fa-brands fa-twitter fa-shake fa-2xl" style={{color: "#1da1f2"}}></i>
-                            <i className="fa-brands fa-square-instagram fa-beat-fade fa-2xl" style={{color: "#ff7b00"}}></i>
-                            <i className="fa-brands fa-linkedin fa-bounce fa-2xl" style={{color: "#0075d5"}}></i>
+                            <i className="fa-brands fa-facebook fa-beat fa-2xl me-2" style={{color: "#2568ef"}}></i>
+                            <i className="fa-brands fa-twitter fa-shake fa-2xl me-2" style={{color: "#1da1f2"}}></i>
+                            <i className="fa-brands fa-square-instagram fa-beat-fade fa-2xl me-2" style={{color: "#ff7b00"}}></i>
+                            <i className="fa-brands fa-linkedin fa-bounce fa-2xl me-2" style={{color: "#0075d5"}}></i>
                         </div>
                         <img src="./pictures/play-store.webp" alt="" width="160" height="50" />
                         <img src="./pictures/app-store.webp" alt="" width="160" height="50" />

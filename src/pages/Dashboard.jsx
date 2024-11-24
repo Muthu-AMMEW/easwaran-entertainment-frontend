@@ -34,7 +34,7 @@ export default function DashboardPage() {
 
     return (
         <div>
-            <NavBar logoutUser={logoutUser} />
+            <NavBar/>
             <main role="main" className="container mt-5">
                 <div className="container">
                     <div className="text-center mt-5">

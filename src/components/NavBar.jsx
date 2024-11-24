@@ -7,7 +7,7 @@ export default function NavBar() {
     const navigate = useNavigate();
     const logoutUser = () => {
         logout();
-        navigate('/login')
+        navigate('/login');
     }
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
