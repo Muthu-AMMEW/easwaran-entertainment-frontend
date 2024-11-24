@@ -1,0 +1,20 @@
+[class*="container"] {
+    border: 2px solid rgb(0, 255, 255); /*cyan*/
+}
+
+[class*="row"] {
+    border: 2px solid rgb(255, 3, 3); /*red*/
+
+}
+
+[class*="col"] {
+    border: 2px solid rgb(0, 71,171); /*cobalt*/
+}
+
+[class*="d-flex"] {
+    border: 2px solid rgb(1, 90, 1); /*dark forest green*/
+}
+
+div {
+    border: 2px solid rgb(0, 0, 0); /*dark*/
+}

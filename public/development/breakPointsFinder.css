@@ -1,0 +1,45 @@
+body {
+    margin-top: 70px;
+}
+
+body::before {
+    content: 'XS';
+    color: rgba(9, 110, 5, 0.795);
+    font-size: 25px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 3;
+}
+
+@media (min-width: 576px) {
+    body::before {
+        content: 'SM';
+    }
+}
+
+
+@media (min-width: 768px) {
+    body::before {
+        content: 'MD';
+    }
+}
+
+@media (min-width: 992px) {
+    body::before {
+        content: 'LG';
+    }
+}
+
+@media (min-width: 1200px) {
+    body::before {
+        content: 'XL';
+    }
+}
+
+@media (min-width: 1400px) {
+    body::before {
+        content: 'XXL';
+    }
+}

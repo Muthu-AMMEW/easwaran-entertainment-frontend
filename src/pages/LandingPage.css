@@ -1,0 +1,31 @@
+.mm-center {
+    position: absolute;
+    color: azure;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.welcome-message {
+    background-image: url("/public/pictures/menu-item-02.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+@media(max-width: 776px) {
+    .welcome-message {
+        background-size: 100% auto;
+        height: 400px;
+    }
+}
+
+
+.red {
+    background-color: rgb(255, 5, 30);
+}
+
+.red:hover {
+    transform: scale(1.11);
+}
