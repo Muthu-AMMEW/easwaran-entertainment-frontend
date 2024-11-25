@@ -61,7 +61,7 @@ export default function RegisterPage() {
             errors.pwd = true;
             hasError = true;
         }
-        if (inputs.cpwd === "") {
+        if (inputs.cpwd !== inputs.pwd) {
             errors.cpwd = true;
             hasError = true;
         }
@@ -114,7 +114,7 @@ export default function RegisterPage() {
                                 <label htmlFor="fullName" className="form-label">Full Name</label>
                                 <input type="text" className="form-control" name="fullName" value={inputs.fullName} id="fullName" onChange={handleChange} placeholder="Enter Full Name" />
                                 {errors.fullName ?
-                                    (<span className="text-danger" >
+                                    (<span className="text-danger bg-warning-subtle" >
                                         Full Name is required.
                                     </span>) : null
                                 }
@@ -123,7 +123,7 @@ export default function RegisterPage() {
                                 <label htmlFor="email" className="form-label">Email</label>
                                 <input type="email" className="form-control" id="email" value={inputs.email} onChange={handleChange} placeholder="Enter email" name="email" />
                                 {errors.email ?
-                                    (<span className="text-danger" >
+                                    (<span className="text-danger bg-warning-subtle" >
                                         Email Address is required.
                                     </span>) : null
                                 }
@@ -132,7 +132,7 @@ export default function RegisterPage() {
                                 <label htmlFor="pno" className="form-label">Phone Number</label>
                                 <input type="number" className="form-control" id="pno" onChange={handleChange} placeholder="Enter phone number" name="pno" value={inputs.pno} />
                                 {errors.pno ?
-                                    (<span className="text-danger" >
+                                    (<span className="text-danger bg-warning-subtle" >
                                         Phone Number is required.
                                     </span>) : null
                                 }
@@ -141,16 +141,16 @@ export default function RegisterPage() {
                                 <label htmlFor="address" className="form-label">Address</label>
                                 <textarea name="address" value={inputs.address} className="form-control" id="address" onChange={handleChange} placeholder="Enter your address"></textarea>
                                 {errors.address ?
-                                    (<span className="text-danger" >
+                                    (<span className="text-danger bg-warning-subtle" >
                                         Address is required.
                                     </span>) : null
                                 }
                             </div>
                             <div className="w-100 mt-3">
                                 <label htmlFor="pwd" className="form-label">Create a password</label>
-                                <input type="pwd" className="form-control" id="password" onChange={handleChange} placeholder="Enter password" name="pwd" value={inputs.pwd} />
+                                <input type="password" className="form-control" id="password" onChange={handleChange} placeholder="Enter password" name="pwd" value={inputs.pwd} />
                                 {errors.pwd ?
-                                    (<span className="text-danger" >
+                                    (<span className="text-danger bg-warning-subtle" >
                                         Password is required.
                                     </span>) : null
                                 }
@@ -159,8 +159,8 @@ export default function RegisterPage() {
                                 <label htmlFor="cpwd" className="form-label">Confirm your password</label>
                                 <input type="password" className="form-control" id="cpwd" onChange={handleChange} placeholder="Enter Confirm password" name="cpwd" value={inputs.cpwd} />
                                 {errors.cpwd ?
-                                    (<span className="text-danger" >
-                                        Please confirm your password
+                                    (<span className="text-danger bg-warning-subtle" >
+                                        Password Mismatch.
                                     </span>) : null
                                 }
                             </div>
@@ -171,7 +171,7 @@ export default function RegisterPage() {
                                         Privacy Policy</a>
                                 </label>
                                 {errors.terms ?
-                                    (<h6 className="text-danger" >
+                                    (<h6 className="text-danger bg-warning-subtle" >
                                         Please agree Terms and Conditons...
                                     </h6>) : null
                                 }
@@ -179,9 +179,9 @@ export default function RegisterPage() {
 
 
                             <div className="mt-3 text-center">
-                                <span className="text-danger" >
+                                <span>
                                     {errors.custom_error ?
-                                        (<p>{errors.custom_error}</p>)
+                                        (<p className="text-danger bg-warning-subtle rounded-5">{errors.custom_error}</p>)
                                         : null
                                     }
                                 </span>

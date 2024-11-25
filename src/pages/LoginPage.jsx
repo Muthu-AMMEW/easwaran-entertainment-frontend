@@ -89,7 +89,7 @@ export default function LoginPage() {
                                 <label htmlFor="email" className="form-label">Email</label>
                                 <input type="email" className="form-control" id="email" placeholder="Enter email" name="email" value={inputs.email} onChange={handleChange} />
                                 {errors.email ?
-                                    (<span className="text-danger" >
+                                    (<span className="text-danger bg-warning-subtle" >
                                         Email is required.
                                     </span>) : null
                                 }
@@ -98,7 +98,7 @@ export default function LoginPage() {
                                 <label htmlFor="pwd" className="form-label">Password</label>
                                 <input type="password" className="form-control" id="pwd" placeholder="Enter password" name="pwd" value={inputs.pwd} onChange={handleChange} />
                                 {errors.pwd ?
-                                    (<span className="text-danger" >
+                                    (<span className="text-danger bg-warning-subtle" >
                                         Password is required.
                                     </span>) : null
                                 }
@@ -120,7 +120,7 @@ export default function LoginPage() {
                                         </div>
                                     </div>) : null
                                 }
-                                <span className="text-danger" >
+                                <span className="text-danger bg-warning-subtle" >
                                     {errors.custom_error ?
                                         (<p>{errors.custom_error}</p>)
                                         : null
