@@ -5,8 +5,7 @@ import { LoginApi } from '../services/Api';
 import { storeUserData } from '../services/Storage'
 import { isAuthenticated } from '../services/Auth';
 import { Link, Navigate } from 'react-router-dom';
-import NavBar from '../components/NavBar';
-import Foot from '../components/Foot';
+
 
 
 export default function LoginPage() {
@@ -76,7 +75,6 @@ export default function LoginPage() {
 
     return (
         <>
-            <NavBar />
             <div className="row min-vw-100 min-vh-100 justify-content-center align-items-center bgpic">
                 <div className="col-11 col-sm-8 col-md-7 col-lg-6 col-xl-5">
 
@@ -134,7 +132,6 @@ export default function LoginPage() {
                     </div>
                 </div>
             </div>
-            <Foot />
         </>
 
     )

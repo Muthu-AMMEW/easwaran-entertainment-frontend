@@ -1,18 +1,16 @@
-import Foot from "../components/Foot";
-import NavBar from "../components/NavBar";
+import { Link } from "react-router-dom";
 import "./LandingPage.css";
 
 export default function LandingPage() {
   return (
     <>
-    <NavBar />
     <div className="main-body container-fluid p-0">
         <div className="row">
             {/* <!-- Body left side start --> */}
             <div className="welcome-message col-md-4 position-relative">
                 <div className="mm-center">
                     <h2 className="fst-italic">THE BEST EXPERIENCE</h2>
-                    <button className="btn btn-danger red p-3 rounded-5">ORDER NOW</button>
+                    <Link to={"/dashboard"} className="btn btn-danger red p-3 rounded-5">ORDER NOW</Link>
                 </div>
 
             </div>
@@ -53,7 +51,6 @@ export default function LandingPage() {
             </div>
         </div>
     </div>
-    <Foot />
     </>
   )
 }

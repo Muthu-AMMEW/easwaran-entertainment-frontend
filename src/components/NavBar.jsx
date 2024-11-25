@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
+import Search from "./Search";
 import { useNavigate, Navigate } from "react-router-dom";
 import { logout, isAuthenticated } from "../services/Auth"
 import "./NavBar.css";
 
-export default function NavBar() {
+export default function NavBar({ cartItems }) {
     const navigate = useNavigate();
     const logoutUser = () => {
         logout();
@@ -19,7 +20,7 @@ export default function NavBar() {
                     </Link>
                     <div className="m-2 d-md-none"></div>
                     <Link to={"/"} className="btn btn-outline-danger d-none d-sm-block my-3 mx-1">Home</Link>
-                    <Link to={"/login"} className="btn btn-outline-success d-lg-none my-3 mx-1">Login</Link>
+                    {!isAuthenticated() && <Link to={"/login"} className="btn btn-outline-success d-lg-none my-3 mx-1">Login</Link>}
 
                 </div>
 
@@ -51,15 +52,15 @@ export default function NavBar() {
                             </ul>
                         </li>
                     </ul>
-                    <form className="d-flex" role="search">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                        <button className="btn btn-outline-danger" type="submit">Search</button>
-                    </form>
-                    {!isAuthenticated() ? <Link to={"/login"} className="btn btn-outline-success my-3 mx-1 d-none d-lg-block">Login</Link> : null}
-                    {!isAuthenticated() ? <Link to={"/signup"} className="btn btn-outline-warning my-3 mx-1">Sign Up</Link> : null}
-                    {isAuthenticated() ? <li className="nav-item"><Link className="nav-link" to="/dashboard" >Dashboard</Link></li> : null}
+                    {isAuthenticated() && <Search />}
+                    {!isAuthenticated() && <Link to={"/login"} className="btn btn-outline-success my-3 mx-1 d-none d-lg-block">Login</Link>}
+                    {!isAuthenticated() && <Link to={"/signup"} className="btn btn-outline-warning my-3 mx-1">Sign Up</Link>}
+                    {isAuthenticated() && <Link className="nav-link" to="/dashboard" >Dashboard</Link>}
                     {/*eslint-disable-next-line*/}
-                    {isAuthenticated() ? <li><a className="nav-link" onClick={logoutUser} style={{ cursor: "pointer" }} >Logout</a></li> : null}
+                    {isAuthenticated() && <a className="nav-link" onClick={logoutUser} style={{ cursor: "pointer" }} >Logout</a>}
+                    {isAuthenticated() && <Link to={"/cart"}>Cart
+                        <span>{cartItems.length}</span>
+                    </Link>}
                 </div>
             </div >
         </nav >

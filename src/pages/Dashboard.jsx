@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react"
 import { useNavigate, Navigate } from "react-router-dom"
-import NavBar from "../components/NavBar"
+
 import { UserDetailsApi } from "../services/Api"
-import { logout, isAuthenticated } from "../services/Auth"
+import { isAuthenticated } from "../services/Auth"
+import ProductCard from '../components/ProductCard'
+import { useSearchParams } from 'react-router-dom';
+import './Dashboard.css';
+
 
 export default function DashboardPage() {
-    // const navigate = useNavigate(); moved to Nav
-
     const [user, setUser] = useState({ name: "", email: "", localId: "" })
 
     useEffect(() => {
@@ -22,10 +24,17 @@ export default function DashboardPage() {
         }
     }, [])
 
-    // const logoutUser = () => {
-    //     logout();
-    //     navigate('/login')
-    // } moved to nav
+
+
+    const [products, setProducts] = useState([]);
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    useEffect(() => {
+        fetch(process.env.REACT_APP_API_URL + '/products?' + searchParams)
+            .then(res => res.json())
+            .then(res => setProducts(res.products))
+    }, [searchParams])
+
 
     if (!isAuthenticated()) {
         //redirect user to dashboard
@@ -33,8 +42,7 @@ export default function DashboardPage() {
     }
 
     return (
-        <div>
-            <NavBar/>
+        <>
             <main role="main" className="container mt-5">
                 <div className="container">
                     <div className="text-center mt-5">
@@ -49,6 +57,13 @@ export default function DashboardPage() {
                     </div>
                 </div>
             </main>
-        </div>
+            <h1 id="products_heading">Latest Products</h1>
+
+            <section id="products" className="container mt-5">
+                <div className="row">
+                    {products.map(product => <ProductCard product={product} />)}
+                </div>
+            </section>
+        </>
     )
 }

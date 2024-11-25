@@ -4,8 +4,6 @@ import { isAuthenticated } from '../services/Auth';
 import { storeUserData } from '../services/Storage';
 import './RegisterPage.css';
 import { Link, Navigate } from 'react-router-dom';
-import NavBar from '../components/NavBar';
-import Foot from '../components/Foot';
 
 
 export default function RegisterPage() {
@@ -103,7 +101,6 @@ export default function RegisterPage() {
 
     return (
         <>
-            <NavBar />
             <div className="row min-vw-100 min-vh-100 justify-content-center align-items-center bgpic">
                 <div className="col-11 col-sm-8 col-md-7 col-lg-6 col-xl-5">
 
@@ -200,7 +197,6 @@ export default function RegisterPage() {
                     </div>
                 </div>
             </div>
-            <Foot />
         </>
     )
 }
