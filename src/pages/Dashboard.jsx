@@ -5,7 +5,7 @@ import { UserDetailsApi } from "../services/Api"
 import { isAuthenticated } from "../services/Auth"
 import ProductCard from '../components/ProductCard'
 import { useSearchParams } from 'react-router-dom';
-import './Dashboard.css';
+// import './Dashboard.css';
 
 
 export default function DashboardPage() {
@@ -61,7 +61,7 @@ export default function DashboardPage() {
 
             <section id="products" className="container mt-5">
                 <div className="row">
-                    {products.map(product => <ProductCard product={product} />)}
+                    {products.map((product,keyst) => <ProductCard product={product} />)}
                 </div>
             </section>
         </>
