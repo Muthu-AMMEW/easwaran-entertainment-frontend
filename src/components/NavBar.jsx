@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Search from "./Search";
-import { useNavigate} from "react-router-dom"; //removed ", Navigate"
+import { useNavigate } from "react-router-dom"; //removed ", Navigate"
 import { logout, isAuthenticated } from "../services/Auth"
 import "./NavBar.css";
 
@@ -53,16 +53,44 @@ export default function NavBar({ cartItems }) {
                         </li>
                     </ul>
                     {isAuthenticated() && <Search />}
+
                     {!isAuthenticated() && <Link to={"/login"} className="btn btn-outline-success my-3 mx-1 d-none d-lg-block">Login</Link>}
+
                     {!isAuthenticated() && <Link to={"/signup"} className="btn btn-outline-warning my-3 mx-1">Sign Up</Link>}
-                    {isAuthenticated() && <Link className="nav-link" to="/dashboard" >Dashboard</Link>}
-                    {/*eslint-disable-next-line*/}
-                    {isAuthenticated() && <a className="nav-link" onClick={logoutUser} style={{ cursor: "pointer" }} >Logout</a>}
-                    {isAuthenticated() && <Link to={"/cart"}>Cart
-                        <span>{cartItems.length}</span>
-                    </Link>}
-                </div>
-            </div >
+                    {isAuthenticated() && <>
+                        <div className="dropdown m-3">
+                        
+                            <a className="nav-link dropdown-toggle" href="www.google.com" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-user fa-lg"></i><span className="h6 m-1">User</span>
+                                    
+                            </a>
+                            <ul className="dropdown-menu">
+                                <li><a className="dropdown-item" href="https://www.facebook.com/EaswaranEntertainment"><i
+                                    className="fa-brands fa-facebook fa-lg me-2"></i>Orders</a>
+                                </li>
+                                <li><a className="dropdown-item" href="https://EaswaranEntertainment.blogspot.com"><i
+                                    className="fa-brands fa-blogger fa-lg me-2"></i>Blogger</a></li>
+                                <li>
+                                    <hr className="dropdown-divider" />
+                                </li>
+                                <li><a className="dropdown-item me-2" href="https://m.me/PiyoosTech"><i
+                                    className="fa-brands fa-facebook-messenger fa-lg me-2"></i>Chat</a></li>
+                            </ul>
+                        </div>
+
+                        <Link className="nav-link" to="/dashboard" ></Link> </>}
+                {/*eslint-disable-next-line*/}
+                {isAuthenticated() && <Link to={"/login"} className="nav-link d-flex flex-column m-3 align-items-start" onClick={logoutUser}>
+                    <div className=" d-flex flex-column justify-content-center"><i class="fa-solid fa-arrow-right-from-bracket fa-xl" style={{ color: "#63E6BE" }}>
+                    </i><h6>Logout</h6></div></Link>}
+
+                {isAuthenticated() && <Link className="d-flex flex-column justify-content-center mx-3 align-items-start" to={"/cart"}>
+                    <h5 class="badge text-black m-1 mt-0">{cartItems.length}</h5>
+                    <i class="fa-solid fa-cart-shopping fa-beat fa-xl mt-0 pt-0" style={{ color: "#FFD43B" }}></i>
+                </Link>}
+            </div>
+        </div >
         </nav >
     )
 }

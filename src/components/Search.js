@@ -8,19 +8,18 @@ export default function Search() {
     const searchHandler = () => {
         navigate('/search?keyword=' + keyword)
     }
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+            searchHandler();
+        }
+    };
 
-    return (<form className="d-flex" role="search">
-        <input
-            type="search"
-            id="search_field"
-            onChange={(e) => setKeyword(e.target.value)}
-            className="form-control me-2"
-            onBlur={searchHandler}
-            placeholder="Enter Product Name ..."
-             aria-label="Search"
-        />
-            <button className="btn btn-outline-danger" type='submit' onClick={searchHandler} id="search_btn">
-                <i className="fa fa-search" aria-hidden="true"></i>
-            </button>
-    </form>)
+    return (<>
+        <div>
+            <div className="d-flex form-control border-danger">
+                <input className="flex-grow-1 border-0" type="search" onBlur={searchHandler} placeholder="Enter Product Name ..." onChange={(e) => setKeyword(e.target.value)} onKeyDown={handleKeyDown} style={{ outline: "none" }} aria-label="Search" />
+                <i className="fa-solid fa-magnifying-glass fa-bounce ms-3 mt-1" onClick={searchHandler}></i>
+            </div>
+        </div>
+    </>)
 }
