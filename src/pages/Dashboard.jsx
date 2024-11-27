@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate, Navigate } from "react-router-dom"
 
-import { UserDetailsApi } from "../services/Api"
+import { UserDetailsApi, M_UserDetailsApi } from "../services/Api"
 import { isAuthenticated } from "../services/Auth"
 import ProductCard from '../components/ProductCard'
 import { useSearchParams } from 'react-router-dom';
@@ -9,14 +9,22 @@ import { useSearchParams } from 'react-router-dom';
 
 
 export default function DashboardPage() {
-    const [user, setUser] = useState({ name: "", email: "", localId: "" })
+    const [user, setUser] = useState({ name: "", email: "", localId: "" });
 
     useEffect(() => {
         if (isAuthenticated()) {
+            async function userDetails(){
+                try{
+                    const user = await UserDetailsApi();
+                    let localId = await user.data.user[0].localId;
+                    const mUser = await M_UserDetailsApi(localId);
+                }catch(err){
+                    console.log(err)
+                }
+            }
             UserDetailsApi().then((response) => {
 
                 setUser({
-                    name: response.data.users[0].displayName,
                     email: response.data.users[0].email,
                     localId: response.data.users[0].localId,
                 })
@@ -47,7 +55,7 @@ export default function DashboardPage() {
                 <div className="container">
                     <div className="text-center mt-5">
                         <h3>Dashboard page</h3>
-                        {user.name && user.email && user.localId ?
+                        {user.email && user.localId ?
                             (<div>
                                 <p className="text-bold " >Hi {user.name}, your Firebase ID is {user.localId}</p>
                                 <p>Your email is {user.email}</p>

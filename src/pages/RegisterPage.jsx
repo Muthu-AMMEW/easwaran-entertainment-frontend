@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { RegisterApi } from '../services/Api';
+import { RegisterApi, M_RegisterApi } from '../services/Api';
 import { isAuthenticated } from '../services/Auth';
 import { storeUserData } from '../services/Storage';
 import './RegisterPage.css';
@@ -33,12 +33,12 @@ export default function RegisterPage() {
 
     const [loading, setLoading] = useState(false);
 
-   
+
     const handleSubmit = (event) => {
         event.preventDefault();
         let errors = initialStateErrors;
         let hasError = false;
-        console.log(errors)
+        // console.log(errors)
         if (inputs.fullName === "") {
             errors.fullName = true;
             hasError = true;
@@ -71,18 +71,40 @@ export default function RegisterPage() {
         if (!hasError) {
             setLoading(true)
             //sending register api request
-            RegisterApi(inputs).then((response) => {
-                storeUserData(response.data.idToken);
-            }).catch((err) => {
-                if (err.response.data.error.message === "EMAIL_EXISTS") {
-                    setErrors({ ...errors, custom_error: "Already this email has been registered!" })
-                } else if (String(err.response.data.error.message).includes('WEAK_PASSWORD')) {
-                    setErrors({ ...errors, custom_error: "Password should be at least 6 characters!" })
-                }
+            // RegisterApi(inputs).then((response) => {
+            //     storeUserData(response.data.idToken);
+            // }).catch((err) => {
+            //     if (err.response.data.error.message === "EMAIL_EXISTS") {
+            //         setErrors({ ...errors, custom_error: "Already this email has been registered!" })
+            //     } else if (String(err.response.data.error.message).includes('WEAK_PASSWORD')) {
+            //         setErrors({ ...errors, custom_error: "Password should be at least 6 characters!" })
+            //     }
 
-            }).finally(() => {
-                setLoading(false)
-            })
+            // }).finally(() => {
+            //     setLoading(false)
+            // })
+            async function api() {
+                try {
+                    let fireRegister = await RegisterApi(inputs);
+                    console.log(fireRegister.data);
+                    // await setInputs(values => ({ ...values, [localId]: fireRegister.data.localId }));
+                    // console.log(inputs);
+                    const mRegister = await M_RegisterApi(inputs, fireRegister);
+                    console.log(mRegister.data);
+                    storeUserData(fireRegister.data.idToken);
+                } catch (err) {
+                    console.log(err)
+                    if (err.response.data.error.message === "EMAIL_EXISTS") {
+                        setErrors({ ...errors, custom_error: "Already this email has been registered!" });
+                    } else if (String(err.response.data.error.message).includes('WEAK_PASSWORD')) {
+                        setErrors({ ...errors, custom_error: "Password should be at least 6 characters!" });
+                    }
+
+                } finally {
+                    setLoading(false)
+                }
+            }
+            api();
         }
         setErrors(errors);
     }
@@ -91,8 +113,8 @@ export default function RegisterPage() {
     const handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
-        setInputs(values => ({...values, [name]: value}))
-      }    
+        setInputs(values => ({ ...values, [name]: value }))
+    }
 
     if (isAuthenticated()) {
         //redirect user to dashboard
