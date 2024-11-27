@@ -81,7 +81,7 @@ export default function LoginPage() {
                     <div
                         className="d-flex flex-column justify-content-center align-items-center w-100 p-5 rounded-5 bg-body-tertiary bg-opacity-50">
 
-                        <div class='text-center h2'>Log In</div>
+                        <div className='text-center h2'>Log In</div>
                         <form className="w-100" onSubmit={handleSubmit}>
                             <div className="w-100 mt-3">
                                 <label htmlFor="email" className="form-label">Email</label>

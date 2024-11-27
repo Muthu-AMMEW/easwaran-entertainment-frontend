@@ -62,7 +62,7 @@ export default function NavBar({ cartItems }) {
                         
                             <a className="nav-link dropdown-toggle" href="www.google.com" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa-solid fa-user fa-lg"></i><span className="h6 m-1">User</span>
+                                <i className="fa-solid fa-user fa-lg"></i><span className="h6 m-1">User</span>
                                     
                             </a>
                             <ul className="dropdown-menu">
@@ -82,12 +82,12 @@ export default function NavBar({ cartItems }) {
                         <Link className="nav-link" to="/dashboard" ></Link> </>}
                 {/*eslint-disable-next-line*/}
                 {isAuthenticated() && <Link to={"/login"} className="nav-link d-flex flex-column m-3 align-items-start" onClick={logoutUser}>
-                    <div className=" d-flex flex-column justify-content-center"><i class="fa-solid fa-arrow-right-from-bracket fa-xl" style={{ color: "#63E6BE" }}>
+                    <div className=" d-flex flex-column justify-content-center"><i className="fa-solid fa-arrow-right-from-bracket fa-xl" style={{ color: "#63E6BE" }}>
                     </i><h6>Logout</h6></div></Link>}
 
                 {isAuthenticated() && <Link className="d-flex flex-column justify-content-center mx-3 align-items-start" to={"/cart"}>
-                    <h5 class="badge text-black m-1 mt-0">{cartItems.length}</h5>
-                    <i class="fa-solid fa-cart-shopping fa-beat fa-xl mt-0 pt-0" style={{ color: "#FFD43B" }}></i>
+                    <h5 className="badge text-black m-1 mt-0">{cartItems.length}</h5>
+                    <i className="fa-solid fa-cart-shopping fa-beat fa-xl mt-0 pt-0" style={{ color: "#FFD43B" }}></i>
                 </Link>}
             </div>
         </div >
