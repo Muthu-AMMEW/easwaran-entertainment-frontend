@@ -117,8 +117,8 @@ export default function RegisterPage() {
     }
 
     if (isAuthenticated()) {
-        //redirect user to dashboard
-        return <Navigate to="/dashboard" />
+        //redirect user to home
+        return <Navigate to="/home" />
     }
 
     return (

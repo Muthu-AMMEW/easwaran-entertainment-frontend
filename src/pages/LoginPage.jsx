@@ -68,8 +68,8 @@ export default function LoginPage() {
     }
 
     if (isAuthenticated()) {
-        //redirect user to dashboard
-        return <Navigate to="/dashboard" />
+        //redirect user to home
+        return <Navigate to="/home" />
     }
 
 

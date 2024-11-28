@@ -31,6 +31,7 @@ export const UserDetailsApi = () => {
     let data = { idToken: getUserData() }
     return axios.post(USER_DETAILS_URL, data)
 }
-export const M_UserDetailsApi = (localId) => {
-    return axios.get(M_USER_DETAILS_URL, localId)
+export const M_UserDetailsApi = (test) => {
+    let data = { localId: test }
+    return axios.post(M_USER_DETAILS_URL, data)
 }

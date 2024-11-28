@@ -1,7 +1,7 @@
 import './App.css';
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
-import DashboardPage from "./pages/Dashboard";
+import Home from "./pages/Home";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LandingPage from "./pages/LandingPage";
 import ProductDetail from './pages/ProductDetail';
@@ -23,8 +23,8 @@ function App() {
           <Routes>
             <Route path="/signup" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/dashboard" element={<DashboardPage />} />
-            <Route path="/search" element={<DashboardPage />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/search" element={<Home />} />
             <Route path="/" element={<LandingPage />} />
             <Route path="/product/:id" element={<ProductDetail cartItems={cartItems} setCartItems={setCartItems} />} />
             <Route path="/cart" element={<Cart cartItems={cartItems} setCartItems={setCartItems} />} />

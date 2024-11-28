@@ -10,7 +10,7 @@ export default function LandingPage() {
             <div className="welcome-message col-md-4 position-relative">
                 <div className="mm-center">
                     <h2 className="fst-italic">THE BEST EXPERIENCE</h2>
-                    <Link to={"/dashboard"} className="btn btn-danger red p-3 rounded-5">ORDER NOW</Link>
+                    <Link to={"/home"} className="btn btn-danger red p-3 rounded-5">ORDER NOW</Link>
                 </div>
 
             </div>
