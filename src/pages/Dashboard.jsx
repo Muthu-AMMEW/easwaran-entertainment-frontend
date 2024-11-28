@@ -60,7 +60,7 @@ export default function DashboardPage() {
         // fetch(process.env.REACT_APP_API_URL + '/products?' + searchParams)
         //     .then(res => res.json())
         //     .then(res => setProducts(res.products))
-    }, [])
+    }, [])  //searchParams
 
 
     if (!isAuthenticated()) {
