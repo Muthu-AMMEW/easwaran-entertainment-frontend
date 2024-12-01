@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
-import { UserDetailsApi, M_UserDetailsApi } from "../services/Api";
 import { Navigate } from "react-router-dom";
-import { isAuthenticated } from "../services/Auth";
 import { useEffect, useState } from "react";
-
+import { isAuthenticated } from '../../services/Auth';
+import { M_UserDetailsApi, UserDetailsApi } from '../../services/Api';
 
 export default function UserProfile() {
     const [user, setUser] = useState({ fullName: "", email: "", pno: "", address: "", localId: "", createdAt: "", idToken: "" });
@@ -14,7 +13,6 @@ export default function UserProfile() {
             UserDetailsApi().then((response) => {
                 setUser(values => ({
                     ...values,
-                    fullName: response.data.users[0].displayName,
                     email: response.data.users[0].email,
                     localId: response.data.users[0].localId,
                     idToken: response.data.users[0].idToken
@@ -29,9 +27,11 @@ export default function UserProfile() {
             M_UserDetailsApi(user.localId).then((response) => {
                 setUser(values => ({
                     ...values,
+                    fullName: response.data.user[0].fullName,
                     pno: response.data.user[0].pno,
                     address: response.data.user[0].address,
-                    createdAt: response.data.user[0].createdAt
+                    createdAt: response.data.user[0].createdAt,
+                    profile: response.data.user[0].profile
                 }));
             })
         }
@@ -44,13 +44,18 @@ export default function UserProfile() {
 
     return (<>
         <div className='row p-5'>
-            <div className=' col-12 col-md-6 d-flex flex-column p-5'>
-                <figure className='avatar avatar-profile'>
-                    <img className="rounded-circle img-fluid" src={user.avatar ?? '/pictures/logo.png'} alt='...' height={300} width={300} />
-                </figure>
-                <div className='ps-sm-5'>
-                <Link to={"/order"} className='btn btn-success me-3'>Change DP</Link>
-                <Link to={"/profile/changepassword"} className='btn btn-danger'>Change Password</Link>
+            <div className=' col-12 col-md-6'>
+                <div className='row'>
+                    <div className='col-12 text-center mt-1 mt-md-5'>
+                        <figure>
+                            <img className="img-fluid" src={user.profile ?? '/pictures/logo.png'} alt='...' height={300} width={300} />
+                        </figure>
+                    </div>
+                    <div className='col-12 text-center'>
+                        <Link to={"/profile/updateprofile"} className='btn btn-success me-3'>Update Profile</Link>
+                        <Link to={"/profile/changepassword"} className='btn btn-danger mt-1 mt-sm-0'>Change Password</Link>
+                    </div>
+
                 </div>
             </div>
             <div className='col-12 col-md-6 ps-5 pt-5'>
@@ -62,7 +67,7 @@ export default function UserProfile() {
 
                 <h4>Joined</h4>
                 <p className='pb-3'>{String(user.createdAt).substring(0, 10)}</p>
-                
+
                 <h4>Address</h4>
                 <p className='w-50'>{user.address}</p>
 

@@ -1,23 +1,36 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { UserDetailsApi} from "../services/Api";
+import { M_UserDetailsApi, UserDetailsApi} from "../services/Api";
 import { isAuthenticated } from "../services/Auth";
 
+
 export default function UserDropDown() {
-    const [user, setUser] = useState({ fullName: "", email: "", localId: "" });
+    const [user, setUser] = useState({ fullName: "", email: "", localId: "", role:"" });
 
     useEffect(() => {
         if (isAuthenticated()) {
             UserDetailsApi().then((response) => {
                 setUser(values => ({
                     ...values,
-                    fullName: response.data.users[0].displayName,
                     email: response.data.users[0].email,
                     localId: response.data.users[0].localId
+
                 }))
             })
         }
     }, [])
+
+    useEffect(() => {
+        if (isAuthenticated() && user.localId) {
+            M_UserDetailsApi(user.localId).then((response) => {
+                setUser(values => ({
+                    ...values,
+                    fullName: response.data.user[0].fullName,
+                    role: response.data.user[0].role
+                }));
+            })
+        }
+    }, [user.localId])
 
     return (
         <>
@@ -29,12 +42,19 @@ export default function UserDropDown() {
 
                 </a>
                 <ul className="dropdown-menu">
-                    <li><Link to={"/user"} className="dropdown-item border border-2 fw-medium">{user.fullName}</Link>
+
+                    <li><Link to={"/profile"} className="dropdown-item border border-2 fw-medium">{user.fullName}</Link>
                     </li>
+
+                    <li><Link className="dropdown-item" to={"/profile"}>
+                    <i class="fa-regular fa-id-card"></i><span className="h6 m-2">Profile</span></Link></li>
+
+                    {user.role === 'admin' ? <li><Link className="dropdown-item" to={'/dashboard'}><i class="fa-solid fa-bars-progress fa-fade"></i><span className="h6 m-2">Dashboard</span></Link></li>:null}
+
                     <li><Link className="dropdown-item fw-medium" to={'/order'}><i class="fa-solid fa-truck-fast fa-beat-fade me-2" style={{color: "#63E6BE"}}></i>Orders</Link>
                     </li>
-                    <li><a className="dropdown-item" href="https://EaswaranEntertainment.blogspot.com"><i
-                        className="fa-brands fa-blogger fa-lg me-2"></i>Blogger</a></li>
+                
+                    <li><Link className="dropdown-item" to={'/dashboard'}><i class="fa-solid fa-bars-progress fa-fade"></i><span className="h6 m-2">Dashboard</span></Link></li>
                     <li>
                         <hr className="dropdown-divider" />
                     </li>

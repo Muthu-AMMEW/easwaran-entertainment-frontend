@@ -48,7 +48,7 @@ export default function OrderDetail() {
                     <div className='m-sm-5 border border-5 p-3'>
                         <h4 className='text-center text-decoration-underline m-1'>Order ID #{orderPart._id}</h4>
                         <div><span className='fw-medium'>Order Status : </span>{orderPart.status}</div>
-                        <div><span className='fw-medium'>Name : </span>{orderPart.address}</div>
+                        <div><span className='fw-medium'>Name : </span>{orderPart.fullName}</div>
                         <div><span className='fw-medium'>Address : </span>{orderPart.address}</div>
                         <div><span className='fw-medium'>Phone Number : </span>{orderPart.pno}</div>
                         <div><span className='fw-medium'>Email Address : </span>{orderPart.email}</div>

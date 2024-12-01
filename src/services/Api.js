@@ -8,17 +8,17 @@ const LOGIN_URL = `/accounts:signInWithPassword?key=${API_KEY}`;
 const USER_DETAILS_URL = `/accounts:lookup?key=${API_KEY}`;
 const CHANGE_PASSWORD_URL =`/accounts:update?key=${API_KEY}`;
 const FORGET_PASSWORD_URL =`/accounts:sendOobCode?key=${API_KEY}`;
-const CHANGE_PHOTO_URL =``;
 
 const M_BASE_URL = process.env.REACT_APP_API_URL;
 const M_REGISTER_URL = M_BASE_URL + `/signup`;
 // const M_LOGIN_URL = M_BASE_URL+`/login`;
 const M_USER_DETAILS_URL = M_BASE_URL + '/userdetails';
 const ORDER_DETIALS_URL = M_BASE_URL + '/order';
+const UPDATE_PROFILE_URL = M_BASE_URL + '/user/updateprofile';
 
 
 export const RegisterApi = (inputs) => {
-    let data = { displayName: inputs.fullName, email: inputs.email, password: inputs.pwd }
+    let data = { email: inputs.email, password: inputs.pwd }
     return axios.post(REGISTER_URL, data)
 }
 export const M_RegisterApi = (inputs, fireRegister) => {
@@ -54,3 +54,9 @@ export const ForgetPasswordApi = (inputs) => {
     let data = {requestType:"PASSWORD_RESET", email: inputs.email}
     return axios.post(FORGET_PASSWORD_URL, data)
 }
+
+export const UpdateProfileApi = (inputs) => {
+    let data = { fullName: inputs.fullName, pno: inputs.pno, address: inputs.address, localId: inputs.localId, profile: inputs.profile }
+    return axios.put(UPDATE_PROFILE_URL, data)
+}
+

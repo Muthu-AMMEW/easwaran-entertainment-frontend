@@ -12,10 +12,10 @@ import Cart from './pages/Cart';
 import NavBar from './components/NavBar';
 import Foot from './components/Foot';
 import OrderDetail from './pages/OrderDetail';
-import UserProfile from './pages/UserProfile';
 import ChangePassword from './pages/profile/ChangePassword';
 import ForgetPassword from './pages/profile/ForgetPassword';
-
+import UpdateProfile from './pages/profile/UpdateProfile';
+import UserProfile from './pages/profile/UserProfile';
 
 
 function App() {
@@ -35,8 +35,9 @@ function App() {
             <Route path="/product/:id" element={<ProductDetail cartItems={cartItems} setCartItems={setCartItems} />} />
             <Route path="/cart" element={<Cart cartItems={cartItems} setCartItems={setCartItems} />} />
             <Route path="/order" element={<OrderDetail />} />
-            <Route path="/user" element={<UserProfile />} />
+            <Route path="/profile" element={<UserProfile />} />
             <Route path="/profile/changepassword" element={<ChangePassword />} />
+            <Route path="/profile/updateprofile" element={<UpdateProfile />} />
             <Route path="/forgetpassword" element={<ForgetPassword />} />
           </Routes>
           <Foot />
