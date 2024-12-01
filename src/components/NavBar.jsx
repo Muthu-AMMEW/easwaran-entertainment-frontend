@@ -20,7 +20,7 @@ export default function NavBar({ cartItems }) {
                         <h5 className="mt-3">APL Food</h5>
                     </Link>
                     <div className="m-2 d-md-none"></div>
-                    <Link to={"/"} className="btn btn-outline-danger d-none d-sm-block my-3 mx-1">Home</Link>
+                    <Link to={"/home"} className="btn btn-outline-danger d-none d-sm-block my-3 mx-1">Home</Link>
                     {!isAuthenticated() && <Link to={"/login"} className="btn btn-outline-success d-lg-none my-3 mx-1">Login</Link>}
 
                 </div>

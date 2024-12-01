@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { Navigate } from "react-router-dom";
+import { isAuthenticated } from "../services/Auth";
 
 
 export default function ProductDetail({ cartItems, setCartItems }) {
@@ -34,6 +36,10 @@ export default function ProductDetail({ cartItems, setCartItems }) {
         if (qty > 1) {
             setQty((state) => state - 1);
         }
+    }
+    if (!isAuthenticated()) {
+        //redirect user to login
+        return <Navigate to="/login" />
     }
 
 

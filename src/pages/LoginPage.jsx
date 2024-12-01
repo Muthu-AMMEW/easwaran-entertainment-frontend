@@ -108,7 +108,7 @@ export default function LoginPage() {
                                     </label>
 
                                 </div>
-                                <div><a href="www.#.com" className="fw-bold">Forget Password?</a></div>
+                                <div><a href="/forgetpassword" className="fw-bold">Forget Password?</a></div>
                             </div>
                             <div className="mt-3 text-center">
                                 {loading ?

@@ -1,9 +1,39 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { UserDetailsApi, M_UserDetailsApi } from "../services/Api";
+import { isAuthenticated } from "../services/Auth";
+import { Navigate } from "react-router-dom";
 
 export default function Cart({ cartItems, setCartItems }) {
     const [complete, setComplete] = useState(false);
+    const [user, setUser] = useState({ fullName: "", email: "", pno: "", address: "", localId: "" });
+    const order = {user: user, cartItems: cartItems};
+
+
+    useEffect(() => {
+        if (isAuthenticated()) {
+            UserDetailsApi().then((response) => {
+                setUser(values => ({
+                    ...values,
+                    fullName: response.data.users[0].displayName,
+                    email: response.data.users[0].email,
+                    localId: response.data.users[0].localId
+                }))
+            })
+        }
+    }, [])
+
+    useEffect(()=>{
+        if(isAuthenticated() && user.localId){
+            M_UserDetailsApi(user.localId).then((response)=>{
+                setUser(values => ({...values,
+                    pno:response.data.user[0].pno,
+                    address:response.data.user[0].address
+                }));
+            })
+        }
+    },[user.localId])
 
     function increaseQty(item) {
         if (item.product.stock === item.qty) {
@@ -31,6 +61,7 @@ export default function Cart({ cartItems, setCartItems }) {
     }
 
     function removeItem(item) {
+        /*eslint-disable-next-line*/
         const updatedItems = cartItems.filter((i) => {
             if (i.product._id !== item.product._id) {
                 return true;
@@ -40,10 +71,10 @@ export default function Cart({ cartItems, setCartItems }) {
     }
 
     function placeOrderHandler() {
-        fetch(process.env.REACT_APP_API_URL + '/order', {
+        fetch(process.env.REACT_APP_API_URL + '/createorder', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(cartItems)
+            body: JSON.stringify(order)
         })
             .then(() => {
                 setCartItems([]);
@@ -52,7 +83,10 @@ export default function Cart({ cartItems, setCartItems }) {
             })
     }
 
-
+    if (!isAuthenticated()) {
+        //redirect user to login
+        return <Navigate to="/login" />
+    }
 
     return cartItems.length > 0 ? <>
         <div className="container-fluid p-3">
