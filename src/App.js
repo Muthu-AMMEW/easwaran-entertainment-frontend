@@ -20,7 +20,6 @@ import Dashboard from './pages/admin/Dashboard';
 import AllProductDetails from './pages/admin/AllProductDetails';
 import AllOrderDetails from './pages/admin/AllOrderDetails';
 
-
 function App() {
   const [cartItems, setCartItems] = useState([]);
   return (
