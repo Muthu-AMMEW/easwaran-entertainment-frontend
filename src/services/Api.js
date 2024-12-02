@@ -1,20 +1,28 @@
 import axios from "axios";
 import { getUserData } from './Storage';
 
-axios.defaults.baseURL = "https://identitytoolkit.googleapis.com/v1";
+const FIRE_BASE_URL = "https://identitytoolkit.googleapis.com/v1";
 const API_KEY = "AIzaSyA1vaXYivjKNtZGfaMNY1zzJbg6QT5L7mI";
-const REGISTER_URL = `/accounts:signUp?key=${API_KEY}`;
-const LOGIN_URL = `/accounts:signInWithPassword?key=${API_KEY}`;
-const USER_DETAILS_URL = `/accounts:lookup?key=${API_KEY}`;
-const CHANGE_PASSWORD_URL =`/accounts:update?key=${API_KEY}`;
-const FORGET_PASSWORD_URL =`/accounts:sendOobCode?key=${API_KEY}`;
+const REGISTER_URL =  FIRE_BASE_URL+`/accounts:signUp?key=${API_KEY}`;
+const LOGIN_URL =  FIRE_BASE_URL+`/accounts:signInWithPassword?key=${API_KEY}`;
+const USER_DETAILS_URL =  FIRE_BASE_URL+`/accounts:lookup?key=${API_KEY}`;
+const CHANGE_PASSWORD_URL = FIRE_BASE_URL+`/accounts:update?key=${API_KEY}`;
+const FORGET_PASSWORD_URL = FIRE_BASE_URL+`/accounts:sendOobCode?key=${API_KEY}`;
 
 const M_BASE_URL = process.env.REACT_APP_API_URL;
 const M_REGISTER_URL = M_BASE_URL + `/signup`;
 // const M_LOGIN_URL = M_BASE_URL+`/login`;
 const M_USER_DETAILS_URL = M_BASE_URL + '/userdetails';
-const ORDER_DETIALS_URL = M_BASE_URL + '/order';
+const ORDER_DETIALS_URL = M_BASE_URL + '/orderdetails';
 const UPDATE_PROFILE_URL = M_BASE_URL + '/user/updateprofile';
+
+// const CREATE_PRODUCT_URL = M_BASE_URL + '/admin/createproduct';
+// const UPDATE_PRODUCT_URL = M_BASE_URL + '/admin/updateproduct';
+const GET_PRODUCTS_URL = M_BASE_URL + '/products?';
+const DELETE_PRODUCT_URL = M_BASE_URL +'/admin/deleteproduct/';
+const M_ALL_USER_DETAILS_URL = M_BASE_URL + '/admin/alluserdetails';
+const ALL_ORDER_DETIALS_URL = M_BASE_URL + '/admin/allorderdetails';
+
 
 
 export const RegisterApi = (inputs) => {
@@ -40,9 +48,17 @@ export const M_UserDetailsApi = (test) => {
     return axios.post(M_USER_DETAILS_URL, data)
 }
 
+export const M_AllUserDetailsApi = () => {
+    return axios.get(M_ALL_USER_DETAILS_URL)
+}
+
 export const OrderDetailsApi = (temp) => {
     let data = { localId: temp}
     return axios.post(ORDER_DETIALS_URL, data)
+}
+
+export const AllOrderDetailsApi = () => {
+    return axios.get(ALL_ORDER_DETIALS_URL)
 }
 
 export const ChangePasswordApi = (inputs) => {
@@ -60,3 +76,10 @@ export const UpdateProfileApi = (inputs) => {
     return axios.put(UPDATE_PROFILE_URL, data)
 }
 
+export const GetProductsApi =(searchParams) => {
+    return axios.get(GET_PRODUCTS_URL+searchParams)
+}
+
+export const DeleteProductApi =(id)=>{
+    return axios.delete(DELETE_PRODUCT_URL+id)
+}

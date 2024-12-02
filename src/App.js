@@ -1,6 +1,6 @@
 import './App.css';
-import RegisterPage from "./pages/RegisterPage";
-import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/profile/RegisterPage";
+import LoginPage from "./pages/profile/LoginPage";
 import Home from "./pages/Home";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LandingPage from "./pages/LandingPage";
@@ -11,11 +11,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import Cart from './pages/Cart';
 import NavBar from './components/NavBar';
 import Foot from './components/Foot';
-import OrderDetail from './pages/OrderDetail';
+import OrderDetails from './pages/OrderDetails';
 import ChangePassword from './pages/profile/ChangePassword';
 import ForgetPassword from './pages/profile/ForgetPassword';
 import UpdateProfile from './pages/profile/UpdateProfile';
 import UserProfile from './pages/profile/UserProfile';
+import Dashboard from './pages/admin/Dashboard';
+import AllProductDetails from './pages/admin/AllProductDetails';
+import AllOrderDetails from './pages/admin/AllOrderDetails';
 
 
 function App() {
@@ -34,11 +37,16 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/product/:id" element={<ProductDetail cartItems={cartItems} setCartItems={setCartItems} />} />
             <Route path="/cart" element={<Cart cartItems={cartItems} setCartItems={setCartItems} />} />
-            <Route path="/order" element={<OrderDetail />} />
+            <Route path="/orderdetails" element={<OrderDetails />} />
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/profile/changepassword" element={<ChangePassword />} />
             <Route path="/profile/updateprofile" element={<UpdateProfile />} />
             <Route path="/forgetpassword" element={<ForgetPassword />} />
+            <Route path="/admin" element={<Dashboard />} />
+            <Route path="/admin/allproductdetails" element={<AllProductDetails />} />
+            <Route path="/admin/newproduct" element={<Dashboard />} />
+            <Route path="/admin/updateproduct/:id" element={<Dashboard />} />
+            <Route path="/admin/allorderdetails" element={<AllOrderDetails />} />
           </Routes>
           <Foot />
         </div>

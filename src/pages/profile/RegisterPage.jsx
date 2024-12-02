@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { RegisterApi, M_RegisterApi } from '../services/Api';
-import { isAuthenticated } from '../services/Auth';
-import { storeUserData } from '../services/Storage';
+import { RegisterApi, M_RegisterApi } from '../../services/Api';
+import { isAuthenticated } from '../../services/Auth';
+import { storeUserData } from '../../services/Storage';
 import './RegisterPage.css';
 import { Link, Navigate } from 'react-router-dom';
 

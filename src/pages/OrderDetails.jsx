@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { UserDetailsApi, OrderDetailsApi } from "../services/Api";
 import { isAuthenticated } from "../services/Auth";
 import { Navigate } from "react-router-dom";
-export default function OrderDetail() {
+export default function OrderDetails() {
 
     const [user, setUser] = useState({ fullName: "", email: "", localId: "" });
     const [order, setOrder] = useState();

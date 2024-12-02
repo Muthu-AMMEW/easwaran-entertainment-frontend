@@ -1,12 +1,10 @@
 import './LoginPage.css';
 
 import { useState } from 'react';
-import { LoginApi } from '../services/Api';
-import { storeUserData } from '../services/Storage'
-import { isAuthenticated } from '../services/Auth';
 import { Link, Navigate } from 'react-router-dom';
-
-
+import { LoginApi } from '../../services/Api';
+import { storeUserData } from '../../services/Storage';
+import { isAuthenticated } from '../../services/Auth';
 
 export default function LoginPage() {
 

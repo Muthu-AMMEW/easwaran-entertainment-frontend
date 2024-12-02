@@ -47,14 +47,12 @@ export default function UserDropDown() {
                     </li>
 
                     <li><Link className="dropdown-item" to={"/profile"}>
-                    <i class="fa-regular fa-id-card"></i><span className="h6 m-2">Profile</span></Link></li>
+                    <i className="fa-regular fa-id-card"></i><span className="h6 m-2">Profile</span></Link></li>
 
-                    {user.role === 'admin' ? <li><Link className="dropdown-item" to={'/dashboard'}><i class="fa-solid fa-bars-progress fa-fade"></i><span className="h6 m-2">Dashboard</span></Link></li>:null}
+                    {user.role === 'admin' ? <li><Link className="dropdown-item" to={'/admin'}><i className="fa-solid fa-bars-progress fa-fade"></i><span className="h6 m-2">Dashboard</span></Link></li>:null}
 
-                    <li><Link className="dropdown-item fw-medium" to={'/order'}><i class="fa-solid fa-truck-fast fa-beat-fade me-2" style={{color: "#63E6BE"}}></i>Orders</Link>
+                    <li><Link className="dropdown-item fw-medium" to={'/orderdetails'}><i className="fa-solid fa-truck-fast fa-beat-fade me-2" style={{color: "#63E6BE"}}></i>Orders</Link>
                     </li>
-                
-                    <li><Link className="dropdown-item" to={'/dashboard'}><i class="fa-solid fa-bars-progress fa-fade"></i><span className="h6 m-2">Dashboard</span></Link></li>
                     <li>
                         <hr className="dropdown-divider" />
                     </li>
