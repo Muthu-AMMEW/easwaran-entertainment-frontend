@@ -11,17 +11,18 @@ const FORGET_PASSWORD_URL = FIRE_BASE_URL+`/accounts:sendOobCode?key=${API_KEY}`
 
 const M_BASE_URL = process.env.REACT_APP_API_URL;
 const M_REGISTER_URL = M_BASE_URL + `/signup`;
-// const M_LOGIN_URL = M_BASE_URL+`/login`;
 const M_USER_DETAILS_URL = M_BASE_URL + '/userdetails';
-const ORDER_DETIALS_URL = M_BASE_URL + '/orderdetails';
+const ORDER_DETAILS_URL = M_BASE_URL + '/orderdetails';
 const UPDATE_PROFILE_URL = M_BASE_URL + '/user/updateprofile';
+const PRODUCT_DETAILS_URL = M_BASE_URL + '/productdetails/';
 
-// const CREATE_PRODUCT_URL = M_BASE_URL + '/admin/createproduct';
-// const UPDATE_PRODUCT_URL = M_BASE_URL + '/admin/updateproduct';
+const NEW_PRODUCT_URL = M_BASE_URL + '/admin/newproduct';
+const UPDATE_PRODUCT_URL = M_BASE_URL + '/admin/updateproduct/';
 const GET_PRODUCTS_URL = M_BASE_URL + '/products?';
 const DELETE_PRODUCT_URL = M_BASE_URL +'/admin/deleteproduct/';
 const M_ALL_USER_DETAILS_URL = M_BASE_URL + '/admin/alluserdetails';
-const ALL_ORDER_DETIALS_URL = M_BASE_URL + '/admin/allorderdetails';
+const ALL_ORDER_DETAILS_URL = M_BASE_URL + '/admin/allorderdetails';
+const ORDER_ID_DETAILS_URL = M_BASE_URL + '/admin/orderiddetails/';
 
 
 
@@ -54,12 +55,13 @@ export const M_AllUserDetailsApi = () => {
 
 export const OrderDetailsApi = (temp) => {
     let data = { localId: temp}
-    return axios.post(ORDER_DETIALS_URL, data)
+    return axios.post(ORDER_DETAILS_URL, data)
 }
 
 export const AllOrderDetailsApi = () => {
-    return axios.get(ALL_ORDER_DETIALS_URL)
+    return axios.get(ALL_ORDER_DETAILS_URL)
 }
+
 
 export const ChangePasswordApi = (inputs) => {
     let data = { idToken:inputs.idToken, password:inputs.pwd, returnSecureToken: true }
@@ -76,8 +78,26 @@ export const UpdateProfileApi = (inputs) => {
     return axios.put(UPDATE_PROFILE_URL, data)
 }
 
+export const ProductDetailsApi =(searchParams) => {
+    return axios.get(PRODUCT_DETAILS_URL+searchParams)
+}
+
 export const GetProductsApi =(searchParams) => {
     return axios.get(GET_PRODUCTS_URL+searchParams)
+}
+
+export const NewProductApi = (inputs) => {
+    let data = { name: inputs.name, price: inputs.price, description: inputs.description, ratings: inputs.ratings, images: [{image: inputs.images}], category: inputs.category, seller: inputs.seller, stock: inputs.stock}
+    return axios.post(NEW_PRODUCT_URL, data)
+}
+
+export const UpdateProductApi = (inputs, id) => {
+    let data = { name: inputs.name, price: inputs.price, description: inputs.description, ratings: inputs.ratings, images: [{image: inputs.images}], category: inputs.category, seller: inputs.seller, stock: inputs.stock}
+    return axios.put(UPDATE_PRODUCT_URL+id, data)
+}
+
+export const OrderIdDetailsApi =(searchParams) => {
+    return axios.get(ORDER_ID_DETAILS_URL+searchParams)
 }
 
 export const DeleteProductApi =(id)=>{

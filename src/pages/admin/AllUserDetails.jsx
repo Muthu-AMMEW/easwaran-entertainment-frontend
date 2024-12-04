@@ -14,7 +14,6 @@ export default function AllUserDetails() {
         if (isAuthenticated()) {
             setLoading(true);
             M_AllUserDetailsApi().then((response) => {
-                console.log(response.data.users)
                 setUsers(response.data.users)
             })
             setLoading(false);

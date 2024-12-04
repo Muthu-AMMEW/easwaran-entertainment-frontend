@@ -16,7 +16,6 @@ export default function AllOrderDetails() {
         if (isAuthenticated()) {
             setLoading(true);
             AllOrderDetailsApi().then((response) => {
-                console.log(response.data.orders)
                 setOrders(response.data.orders)
             })
             setLoading(false);
@@ -25,7 +24,7 @@ export default function AllOrderDetails() {
 
     const orderData = () => {
         const data = {
-            columns : [
+            columns: [
                 {
                     label: 'Order ID ↕',
                     field: 'id',
@@ -58,52 +57,49 @@ export default function AllOrderDetails() {
                 },
 
                 {
-                    label: 'Product ID(Qty)',
+                    label: 'Order Details',
                     field: 'actions',
                     sort: 'asc'
                 }
-                
+
             ],
-            rows : []
+            rows: []
         }
 
-        orders.forEach( order => {
+        orders.forEach(order => {
             data.rows.push({
-                id: order.localId,
+                id: order._id,
                 name: order.fullName,
-                email : order.email,
+                email: order.email,
                 pno: order.pno,
                 address: order.address,
                 date: order.createdAt,
                 actions: (
                     <>
-                        {order.cartItems.map(item=>(<>
-                            <Link className="me-1" to={`/product/${item.product._id}`}>{item.product._id}</Link>
-                            <span className="badge bg-secondary">({item.qty})</span> 
-                        </>))}
+                        <Link className="me-1" to={`/admin/orderiddetails/${order._id}`}>Full Order Detils</Link>
                     </>)
             })
         })
 
         return data;
     }
-  return (
-    <>
-    <AdminNavBar />
-    <div className=" container-fluid p-5">
-            <h1 className="my-4">Order List</h1>
-            <div>
-                {!loading && 
-                    <MDBDataTable
-                        data={orderData()}
-                        bordered
-                        striped
-                        hover
-                        className="px-3"
-                    />
-                }
-           </div>
-        </div>
-    </>
-  )
+    return (
+        <>
+            <AdminNavBar />
+            <div className=" container-fluid p-5">
+                <h1 className="my-4">Order List</h1>
+                <div>
+                    {!loading &&
+                        <MDBDataTable
+                            data={orderData()}
+                            bordered
+                            striped
+                            hover
+                            className="px-3"
+                        />
+                    }
+                </div>
+            </div>
+        </>
+    )
 }

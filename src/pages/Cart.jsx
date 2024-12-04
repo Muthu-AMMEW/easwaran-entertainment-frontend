@@ -139,7 +139,7 @@ export default function Cart({ cartItems, setCartItems }) {
                         <h4>Order Summary</h4>
                         <hr />
                         <h6 className='m-4'>Subtotal:  <span className='text-danger'>{cartItems.reduce((acc, item) => (acc + item.qty), 0)} (Units)</span></h6>
-                        <h6 className='m-4'>Est. total: <span className='text-danger'>${Number(cartItems.reduce((acc, item) => (acc + item.product.price * item.qty), 0)).toFixed(2)}</span></h6>
+                        <h6 className='m-4'>Est. total: <span className='text-danger'>Rs. {Number(cartItems.reduce((acc, item) => (acc + item.product.price * item.qty), 0)).toFixed(2)}</span></h6>
 
                         <hr />
                         <button onClick={placeOrderHandler} className="btn btn-success">Place Order</button>

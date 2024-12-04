@@ -21,7 +21,6 @@ export default function ForgetPassword() {
     event.preventDefault();
     let errors = initialStateErrors;
     let hasError = false;
-    // console.log(errors)
     if (inputs.email === "") {
       errors.email = true;
       hasError = true;
@@ -32,7 +31,6 @@ export default function ForgetPassword() {
       async function api() {
         try {
           let fireRegister = await ForgetPasswordApi(inputs);
-          console.log(fireRegister.data);
           toast.success("Submited Successfully, Please Check your Email");
         } catch (err) {
           console.log(err)

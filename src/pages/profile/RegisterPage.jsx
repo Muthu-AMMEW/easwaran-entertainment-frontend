@@ -15,7 +15,6 @@ export default function RegisterPage() {
         address: "",
         pwd: "",
         cpwd: "",
-        password: "",
         terms: true
     })
 
@@ -152,7 +151,7 @@ export default function RegisterPage() {
                             </div>
                             <div className="w-100 mt-3">
                                 <label htmlFor="pwd" className="form-label">Create a password</label>
-                                <input type="password" className="form-control" id="password" onChange={handleChange} placeholder="Enter password" name="pwd" value={inputs.pwd} />
+                                <input type="password" className="form-control" id="pwd" onChange={handleChange} placeholder="Enter password" name="pwd" value={inputs.pwd} />
                                 {errors.pwd ?
                                     (<span className="text-danger bg-warning-subtle" >
                                         Password is required.

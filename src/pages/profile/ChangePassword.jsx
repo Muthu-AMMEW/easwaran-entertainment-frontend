@@ -28,7 +28,6 @@ export default function ChangePassword() {
     event.preventDefault();
     let errors = initialStateErrors;
     let hasError = false;
-    // console.log(errors)
     if (inputs.pwd === "") {
       errors.pwd = true;
       hasError = true;

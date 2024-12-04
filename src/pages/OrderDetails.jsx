@@ -38,7 +38,6 @@ export default function OrderDetails() {
 
     return (order &&
         <>
-            {console.log(order)}
             <div className="container-fluid p-2">
                 <h2 className="mt-5 text-center">You placed <b>{order.length}</b> orders</h2>
                 {order.map((orderPart) =>
@@ -53,6 +52,7 @@ export default function OrderDetails() {
                         <div><span className='fw-medium'>Phone Number : </span>{orderPart.pno}</div>
                         <div><span className='fw-medium'>Email Address : </span>{orderPart.email}</div>
                         <div><span className='fw-medium'>Date : </span>{orderPart.createdAt}</div>
+                        <div><span className='fw-medium'>Total Amount : </span>Rs. {orderPart.amount}</div>
                         <h5 className='text-center text-decoration-underline m-1'>Order Items</h5>
                         <div className="cart-item my-1">
                             {orderPart.cartItems.map(item => (

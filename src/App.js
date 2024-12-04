@@ -4,7 +4,7 @@ import LoginPage from "./pages/profile/LoginPage";
 import Home from "./pages/Home";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LandingPage from "./pages/LandingPage";
-import ProductDetail from './pages/ProductDetail';
+import ProductDetails from './pages/ProductDetails';
 import { useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -19,6 +19,9 @@ import UserProfile from './pages/profile/UserProfile';
 import Dashboard from './pages/admin/Dashboard';
 import AllProductDetails from './pages/admin/AllProductDetails';
 import AllOrderDetails from './pages/admin/AllOrderDetails';
+import OrderIdDetails from './pages/admin/OrderIdDetails';
+import NewProduct from './pages/admin/NewProduct';
+import UpdateProduct from './pages/admin/UpdateProduct';
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -34,7 +37,7 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/search" element={<Home />} />
             <Route path="/" element={<LandingPage />} />
-            <Route path="/product/:id" element={<ProductDetail cartItems={cartItems} setCartItems={setCartItems} />} />
+            <Route path="/product/:id" element={<ProductDetails cartItems={cartItems} setCartItems={setCartItems} />} />
             <Route path="/cart" element={<Cart cartItems={cartItems} setCartItems={setCartItems} />} />
             <Route path="/orderdetails" element={<OrderDetails />} />
             <Route path="/profile" element={<UserProfile />} />
@@ -43,9 +46,10 @@ function App() {
             <Route path="/forgetpassword" element={<ForgetPassword />} />
             <Route path="/admin" element={<Dashboard />} />
             <Route path="/admin/allproductdetails" element={<AllProductDetails />} />
-            <Route path="/admin/newproduct" element={<Dashboard />} />
-            <Route path="/admin/updateproduct/:id" element={<Dashboard />} />
+            <Route path="/admin/newproduct" element={<NewProduct />} />
+            <Route path="/admin/updateproduct/:id" element={<UpdateProduct />} />
             <Route path="/admin/allorderdetails" element={<AllOrderDetails />} />
+            <Route path="/admin/orderiddetails/:id" element={<OrderIdDetails />} />
           </Routes>
           <Foot />
         </div>

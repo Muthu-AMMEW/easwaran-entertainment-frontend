@@ -85,7 +85,7 @@ export default function AllProductDetails() {
                 stock: product.stock,
                 actions: (
                     <>
-                        <Link to={`/admin/product/${product._id}`} className="btn btn-primary"> <i className="fa fa-pencil"></i></Link>
+                        <Link to={`/admin/updateproduct/${product._id}`} className="btn btn-primary"> <i className="fa fa-pencil"></i></Link>
                         <button onClick={e => deleteHandler(e, product._id)} className="btn btn-danger py-1 px-2 ml-2">
                             <i className="fa fa-trash"></i>
                         </button>

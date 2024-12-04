@@ -3,18 +3,17 @@ import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Navigate } from "react-router-dom";
 import { isAuthenticated } from "../services/Auth";
+import { ProductDetailsApi } from '../services/Api';
 
 
-export default function ProductDetail({ cartItems, setCartItems }) {
+export default function ProductDetails({ cartItems, setCartItems }) {
     const [product, setProduct] = useState(null);
     const [qty, setQty] = useState(1);
     const { id } = useParams();
 
-    useEffect(() => {
-        fetch(process.env.REACT_APP_API_URL + '/product/' + id)
-            .then(res => res.json())
-            .then(res => setProduct(res.product))
-    }, [id]) //id parameter own cutomised
+    useEffect(()=>{
+        ProductDetailsApi(id).then(res=>setProduct(res.data.product))
+    },[id])
 
     function addToCart() {
         const itemExist = cartItems.find((item) => item.product._id === product._id)
