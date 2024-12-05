@@ -1,12 +1,12 @@
 import AdminNavBar from './AdminNavBar'
-import AllUserDetails from './AllUserDetails'
+import AllOrderDetails from './AllOrderDetails'
 
 export default function Dashboard() {
   return (
     <>
     <div>
         <AdminNavBar />
-        <AllUserDetails />
+        <AllOrderDetails />
     </div>
     </>
   )

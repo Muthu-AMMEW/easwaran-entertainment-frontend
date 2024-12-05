@@ -2,9 +2,10 @@ import './LoginPage.css';
 
 import { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
-import { LoginApi } from '../../services/Api';
-import { storeUserData } from '../../services/Storage';
+import { LoginApi, M_UserDetailsApi } from '../../services/Api';
+import { storeAdminData, storeUserData } from '../../services/Storage';
 import { isAuthenticated } from '../../services/Auth';
+
 
 export default function LoginPage() {
 
@@ -23,7 +24,7 @@ export default function LoginPage() {
 
     const [loading, setLoading] = useState(false);
 
-   
+
     const handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -32,7 +33,7 @@ export default function LoginPage() {
 
 
     const handleSubmit = (event) => {
-      
+
         event.preventDefault();
         let errors = initialStateErrors;
         let hasError = false;
@@ -48,18 +49,24 @@ export default function LoginPage() {
 
         if (!hasError) {
             setLoading(true)
-            //sending login api request
-            LoginApi(inputs).then((response) => {
-                storeUserData(response.data.idToken);
-            }).catch((err) => {
-                // eslint-disable-next-line
-                if (err.code = "ERR_BAD_REQUEST") {
-                    setErrors({ ...errors, custom_error: "Invalid Credentials." })
-                }
+            async function api() {
+                try {
+                    let fireData = await LoginApi(inputs);
+                    let mData = await M_UserDetailsApi(fireData.data.localId);
+                    storeAdminData(mData.data.user[0].role);
+                    storeUserData(fireData.data.idToken);
 
-            }).finally(() => {
-                setLoading(false)
-            })
+                } catch (err) {
+                    // eslint-disable-next-line
+                    if (err.code = "ERR_BAD_REQUEST") {
+                        setErrors({ ...errors, custom_error: "Invalid Credentials." })
+                    }
+
+                } finally {
+                    setLoading(false)
+                }
+            }
+            api();
         }
         setErrors({ ...errors });
 

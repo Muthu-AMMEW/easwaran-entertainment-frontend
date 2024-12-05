@@ -11,9 +11,11 @@ export default function ProductDetails({ cartItems, setCartItems }) {
     const [qty, setQty] = useState(1);
     const { id } = useParams();
 
-    useEffect(()=>{
-        ProductDetailsApi(id).then(res=>setProduct(res.data.product))
-    },[id])
+    useEffect(() => {
+        if (isAuthenticated()) {
+            ProductDetailsApi(id).then(res => setProduct(res.data.product))
+        }
+    }, [id])
 
     function addToCart() {
         const itemExist = cartItems.find((item) => item.product._id === product._id)
@@ -71,7 +73,7 @@ export default function ProductDetails({ cartItems, setCartItems }) {
                         <span className="btn btn-primary" onClick={increaseQty}>+</span>
                         <button type="button" onClick={addToCart} disabled={product.stock === 0} className="btn btn-primary">Add to Cart</button>
                     </div>
-                    
+
 
                     <hr />
 

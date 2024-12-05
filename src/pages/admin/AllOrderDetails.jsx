@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { AllOrderDetailsApi } from "../../services/Api";
-import { isAuthenticated } from "../../services/Auth";
+import { isAdmin, isAuthenticated } from "../../services/Auth";
 import { MDBDataTable } from "mdbreact";
 import { Link } from "react-router-dom";
-import AdminNavBar from "./AdminNavBar";
+import { Navigate } from 'react-router-dom';
 
 
 export default function AllOrderDetails() {
@@ -13,7 +13,7 @@ export default function AllOrderDetails() {
 
 
     useEffect(() => {
-        if (isAuthenticated()) {
+        if (isAuthenticated() && isAdmin()) {
             setLoading(true);
             AllOrderDetailsApi().then((response) => {
                 setOrders(response.data.orders)
@@ -83,9 +83,12 @@ export default function AllOrderDetails() {
 
         return data;
     }
+
+    if (!isAuthenticated() || !isAdmin()) {
+        return <Navigate to="/login" />
+    }
     return (
         <>
-            <AdminNavBar />
             <div className=" container-fluid p-5">
                 <h1 className="my-4">Order List</h1>
                 <div>

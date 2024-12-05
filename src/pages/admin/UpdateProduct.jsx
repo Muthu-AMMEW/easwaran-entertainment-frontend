@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { ProductDetailsApi, UpdateProductApi } from '../../services/Api';
-import { isAuthenticated } from '../../services/Auth';
+import { isAdmin, isAuthenticated } from '../../services/Auth';
 import { toast } from 'react-toastify';
 import { Navigate, useParams } from 'react-router-dom';
 
@@ -38,7 +38,7 @@ export default function UpdateProduct() {
     const { id } = useParams();
 
     useEffect(() => {
-        if (isAuthenticated()) {
+        if (isAuthenticated() && isAdmin()) {
 
             ProductDetailsApi(id).then((response) => {
                 setInputs(values => ({
@@ -132,9 +132,8 @@ export default function UpdateProduct() {
 
     }
 
-    if (!isAuthenticated()) {
-        //redirect user to home
-        return <Navigate to="/home" />
+    if (!isAuthenticated() || !isAdmin()) {
+        return <Navigate to="/login" />
     }
 
     return (
@@ -143,7 +142,7 @@ export default function UpdateProduct() {
                 <div className="col-11 col-sm-8 col-md-7 col-lg-6 col-xl-5">
 
                     <div className="d-flex flex-column justify-content-center align-items-center w-100 p-5 rounded-5 bg-body-tertiary bg-opacity-50">
-                        <div className='text-center h2'>Add New Product</div>
+                        <div className='text-center h2'>Update Product</div>
                         <form className="w-100" onSubmit={handleSubmit}>
 
                             <div className="w-100 mt-3">

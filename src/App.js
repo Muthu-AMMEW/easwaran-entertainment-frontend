@@ -18,10 +18,10 @@ import UpdateProfile from './pages/profile/UpdateProfile';
 import UserProfile from './pages/profile/UserProfile';
 import Dashboard from './pages/admin/Dashboard';
 import AllProductDetails from './pages/admin/AllProductDetails';
-import AllOrderDetails from './pages/admin/AllOrderDetails';
 import OrderIdDetails from './pages/admin/OrderIdDetails';
 import NewProduct from './pages/admin/NewProduct';
 import UpdateProduct from './pages/admin/UpdateProduct';
+import AllUserDetails from './pages/admin/AllUserDetails';
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -48,7 +48,7 @@ function App() {
             <Route path="/admin/allproductdetails" element={<AllProductDetails />} />
             <Route path="/admin/newproduct" element={<NewProduct />} />
             <Route path="/admin/updateproduct/:id" element={<UpdateProduct />} />
-            <Route path="/admin/allorderdetails" element={<AllOrderDetails />} />
+            <Route path="/admin/alluserdetails" element={<AllUserDetails />} />
             <Route path="/admin/orderiddetails/:id" element={<OrderIdDetails />} />
           </Routes>
           <Foot />

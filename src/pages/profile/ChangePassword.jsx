@@ -37,16 +37,14 @@ export default function ChangePassword() {
       hasError = true;
     }
 
-    if (!hasError) {
+    if (!hasError && isAuthenticated()) {
       setLoading(true)
       async function api() {
         try {
-          console.log(inputs)
           await ChangePasswordApi(inputs).then((response) => {
           storeUserData(response.data.idToken)})
           toast.success("Password Changed Successfully");
         } catch (err) {
-          console.log(err)
           if (err.response.data.error.message === "CREDENTIAL_TOO_OLD_LOGIN_AGAIN") {
             setErrors({ ...errors, custom_error: "The user's credential is no longer valid. The user must sign in again." });
           } else if (String(err.response.data.error.message).includes('WEAK_PASSWORD')) {

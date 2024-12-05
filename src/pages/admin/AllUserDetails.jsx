@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { M_AllUserDetailsApi } from "../../services/Api";
-import { isAuthenticated } from "../../services/Auth";
+import { isAdmin, isAuthenticated } from "../../services/Auth";
 import { MDBDataTable } from "mdbreact";
-
+import { Navigate } from 'react-router-dom';
 
 export default function AllUserDetails() {
 
@@ -11,7 +11,7 @@ export default function AllUserDetails() {
 
 
     useEffect(() => {
-        if (isAuthenticated()) {
+        if (isAuthenticated() && isAdmin()) {
             setLoading(true);
             M_AllUserDetailsApi().then((response) => {
                 setUsers(response.data.users)
@@ -70,6 +70,11 @@ export default function AllUserDetails() {
 
         return data;
     }
+
+    if (!isAuthenticated() || !isAdmin()) {
+        return <Navigate to="/login" />
+    }
+
   return (
     <>
     <div className=" container-fluid p-5">

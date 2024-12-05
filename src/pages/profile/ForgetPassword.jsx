@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { toast } from 'react-toastify';
 import { ForgetPasswordApi } from '../../services/Api';
+import { isAuthenticated } from '../../services/Auth';
+import { Navigate } from "react-router-dom";
 
 export default function ForgetPassword() {
 
@@ -30,10 +32,9 @@ export default function ForgetPassword() {
       setLoading(true)
       async function api() {
         try {
-          let fireRegister = await ForgetPasswordApi(inputs);
+          await ForgetPasswordApi(inputs);
           toast.success("Submited Successfully, Please Check your Email");
         } catch (err) {
-          console.log(err)
           if (err.response.data.error.message === "EMAIL_NOT_FOUND") {
             setErrors({ ...errors, custom_error: "Email Address not found" });
           }
@@ -53,6 +54,11 @@ export default function ForgetPassword() {
     const name = event.target.name;
     const value = event.target.value;
     setInputs(values => ({ ...values, [name]: value }))
+  }
+
+  if (isAuthenticated()) {
+    //redirect user to home
+    return <Navigate to="/home" />
   }
 
 

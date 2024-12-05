@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { DeleteProductApi, GetProductsApi } from "../../services/Api";
-import { isAuthenticated } from "../../services/Auth";
+import { isAdmin, isAuthenticated } from "../../services/Auth";
 import { MDBDataTable } from "mdbreact";
 import { toast } from 'react-toastify';
 import AdminNavBar from "./AdminNavBar";
 import { Link } from "react-router-dom";
+import { Navigate } from 'react-router-dom';
+
 
 
 export default function AllProductDetails() {
@@ -15,7 +17,7 @@ export default function AllProductDetails() {
 
 
     useEffect(() => {
-        if (isAuthenticated()) {
+        if (isAuthenticated() && isAdmin()) {
             setLoading(true);
             GetProductsApi().then((response) => {
                 setProducts(response.data.products)
@@ -95,6 +97,11 @@ export default function AllProductDetails() {
 
         return data;
     }
+
+    if (!isAuthenticated() || !isAdmin()) {
+        return <Navigate to="/login" />
+    }
+
     return (
         <>
         <AdminNavBar />

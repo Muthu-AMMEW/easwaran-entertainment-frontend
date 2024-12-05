@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { NewProductApi } from '../../services/Api';
-import { isAuthenticated } from '../../services/Auth';
+import { isAdmin, isAuthenticated } from '../../services/Auth';
 import { toast } from 'react-toastify';
 import { Navigate } from 'react-router-dom';
 
@@ -72,14 +72,14 @@ export default function NewProduct() {
       errors.stock = true;
       hasError = true;
     }
-    if (!hasError) {
+    if (!hasError && isAuthenticated() && isAdmin()) {
       setLoading(true)
       async function api() {
         try {
-            NewProductApi(inputs);
-            toast.success("Product Order Successfully");
+          NewProductApi(inputs);
+          toast.success("Product Order Successfully");
         } catch (err) {
-            setErrors(values => ({...values, custom_error: err}))
+          setErrors(values => ({ ...values, custom_error: err }))
         } finally {
           setLoading(false)
         }
@@ -96,7 +96,7 @@ export default function NewProduct() {
     setInputs(values => ({ ...values, [name]: value }))
   }
 
-  function handleReset(){
+  function handleReset() {
     setInputs({
       name: "",
       price: "",
@@ -107,14 +107,12 @@ export default function NewProduct() {
       seller: "",
       stock: ""
     })
-  
+
   }
 
-  if (!isAuthenticated()) {
-    //redirect user to home
-    return <Navigate to="/home" />
+  if (!isAuthenticated() || !isAdmin()) {
+    return <Navigate to="/login" />
   }
-
   return (
     <>
       <div className="row min-vw-100 min-vh-100 justify-content-center align-items-center bgpic">

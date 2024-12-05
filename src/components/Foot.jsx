@@ -2,7 +2,7 @@
 export default function Foot() {
     return (
         <>
-            <footer className="container-fluid bg-body-tertiary p-5 pb-1">
+            <footer className="container-fluid bg-body-tertiary p-2 p-sm-5 pb-1">
                 <div className="row">
 
                     <div className="col-6 col-md d-flex flex-column mb-2 justify-content-around">

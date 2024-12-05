@@ -13,15 +13,11 @@ export default function AdminNavBar() {
         </div>
 
         <div>
-        <Link to={'/admin/allorderdetails'} className="btn btn-outline-danger mx-lg-3">Orders</Link>
+        <Link to={'/admin'} className="btn btn-outline-danger mx-lg-3">Orders</Link>
         </div>
 
         <div>
-        <Link to={'/admin'} className="btn btn-outline-danger mx-lg-3">Users</Link>
-        </div>
-
-        <div>
-        <Link to={'/admin/productdetails'} className="btn btn-outline-danger mx-lg-3">Update Product</Link>
+        <Link to={'/admin/alluserdetails'} className="btn btn-outline-danger mx-lg-3">Users</Link>
         </div>
     </div>
     </>

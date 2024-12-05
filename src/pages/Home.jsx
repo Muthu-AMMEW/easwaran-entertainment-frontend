@@ -12,15 +12,11 @@ export default function Home() {
     const [products, setProducts] = useState([]);
     const [searchParams] = useSearchParams();
 
-    // useEffect(() => {
-    //     fetch(process.env.REACT_APP_API_URL+'/products?'+searchParams)
-    //     .then(res => res.json())
-    //     .then( res => setProducts(res.products))
-    // },[searchParams])
-
     useEffect(() => {
-        GetProductsApi(searchParams).then( res => setProducts(res.data.products))
-    },[searchParams])
+        if (isAuthenticated()) {
+            GetProductsApi(searchParams).then(res => setProducts(res.data.products))
+        }
+    }, [searchParams])
 
     if (!isAuthenticated()) {
         //redirect user to login

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { RegisterApi, M_RegisterApi } from '../../services/Api';
 import { isAuthenticated } from '../../services/Auth';
-import { storeUserData } from '../../services/Storage';
+import { storeAdminData, storeUserData } from '../../services/Storage';
 import './RegisterPage.css';
 import { Link, Navigate } from 'react-router-dom';
 
@@ -37,7 +37,6 @@ export default function RegisterPage() {
         event.preventDefault();
         let errors = initialStateErrors;
         let hasError = false;
-        // console.log(errors)
         if (inputs.fullName === "") {
             errors.fullName = true;
             hasError = true;
@@ -72,9 +71,8 @@ export default function RegisterPage() {
             async function api() {
                 try {
                     let fireRegister = await RegisterApi(inputs);
-                    console.log(fireRegister.data);
                     const mRegister = await M_RegisterApi(inputs, fireRegister);
-                    console.log(mRegister.data);
+                    storeAdminData(mRegister.data.user.role);
                     storeUserData(fireRegister.data.idToken);
                 } catch (err) {
                     console.log(err)

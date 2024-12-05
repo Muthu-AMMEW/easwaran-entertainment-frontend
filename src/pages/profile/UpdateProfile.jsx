@@ -60,7 +60,6 @@ export default function UpdateProfile() {
     event.preventDefault();
     let errors = initialStateErrors;
     let hasError = false;
-    // console.log(errors)
     if (inputs.fullName === "") {
       errors.fullName = true;
       hasError = true;
@@ -83,7 +82,6 @@ export default function UpdateProfile() {
       setLoading(true)
       async function api() {
         try {
-          console.log(inputs)
           await UpdateProfileApi(inputs);
           toast.success("Profile Updated Successfully");
         } catch (err) {

@@ -1,10 +1,14 @@
-import { getUserData, removeUserData } from "./Storage"
+import { getAdminData, getUserData, removeUserData } from "./Storage"
 
 
-export const isAuthenticated = ()=>{
-    return getUserData()!=null?true:false;
+export const isAuthenticated = () => {
+    return getUserData() != null ? true : false;
 }
 
-export const logout = ()=>{
+export const isAdmin = () => {
+    return getAdminData();
+}
+
+export const logout = () => {
     removeUserData();
 }

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { useParams } from 'react-router-dom';
 import { OrderIdDetailsApi } from '../../services/Api';
-import { isAuthenticated } from '../../services/Auth';
+import { isAdmin, isAuthenticated } from '../../services/Auth';
 
 export default function OrderIdDetails() {
 
@@ -11,15 +11,14 @@ export default function OrderIdDetails() {
     const { id } = useParams();
 
     useEffect(() => {
-        if (isAuthenticated()) {
+        if (isAuthenticated() && isAdmin()) {
             OrderIdDetailsApi(id).then((response) => {
                 setOrder(response.data.order)
             })
         }
     }, [id])
 
-    if (!isAuthenticated()) {
-        //redirect user to login
+    if (!isAuthenticated() || !isAdmin()) {
         return <Navigate to="/login" />
     }
 
