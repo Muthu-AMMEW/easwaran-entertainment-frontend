@@ -7,9 +7,10 @@
     transform: translate(-50%, -50%);
 }
 .mm-center h2{
-    background-color: rgb(2, 138, 2);
-    border-radius:100px;
-    padding: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-weight: bolder;
+    text-shadow: 2px 2px black;
 }
 .welcome-message {
     background-image: url("/public/pictures/menu-item-02.jpg");
