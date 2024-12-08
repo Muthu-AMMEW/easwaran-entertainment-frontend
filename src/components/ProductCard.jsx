@@ -15,6 +15,7 @@ export default function ProductCard({ product }) {
                         </div>
                     </div>
                     <h5 className="card-text">Rs. {product.price}</h5>
+                    <p className="card-text text-danger">{product.category}</p>
                     <Link to={"/product/" + product._id} className="btn btn-warning m-3">View Details</Link>
                 </div>
             </div>

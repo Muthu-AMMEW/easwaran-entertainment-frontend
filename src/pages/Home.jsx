@@ -25,11 +25,11 @@ export default function Home() {
 
     return (
         <>
-            <h1 id="products_heading">Latest Products</h1>
+            <h1 id="products_heading" className="ms-5 mt-3">Latest Food Items</h1>
 
             <section id="products" className="container mt-5">
                 <div className="row">
-                    {products.map((product, keyst) => <ProductCard product={product} />)}
+                    {products.map((product) => <ProductCard product={product} />)}
                 </div>
             </section>
         </>

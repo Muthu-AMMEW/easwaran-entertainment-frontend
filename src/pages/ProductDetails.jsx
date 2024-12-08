@@ -48,7 +48,7 @@ export default function ProductDetails({ cartItems, setCartItems }) {
         {product && <div className="container-fluid p-5">
             <div className="row">
                 <div className="col-12 col-lg-5 text-center">
-                    <img className=' img-fluid' src={product.images[0].image} alt={product.name} height="500" width="500" />
+                    <img className='img-fluid rounded-3' src={product.images[0].image} alt={product.name} height="500" width="500" />
                 </div>
 
                 <div className="col-12 col-lg-5 mt-5 text-center">
@@ -83,6 +83,7 @@ export default function ProductDetails({ cartItems, setCartItems }) {
 
                     <h4 className="mt-2">Description</h4>
                     <p>{product.description}</p>
+                    <h6 className="card-text text-danger">{product.category}</h6>
                     <hr />
                     <h6>Sold by: <strong>{product.seller}</strong></h6>
 
