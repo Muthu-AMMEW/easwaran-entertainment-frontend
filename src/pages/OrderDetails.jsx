@@ -42,7 +42,7 @@ export default function OrderDetails() {
                 <h2 className="mt-5 text-center">You placed <b>{order.length}</b> orders</h2>
                 {order.map((orderPart) =>
                 (   
-                    <div className='m-lg-5'>
+                    <div className='m-lg-5' key={orderPart._id}>
                     <div className='m-lg-5'>
                     <div className='m-sm-5 border border-5 p-3'>
                         <h4 className='text-center text-decoration-underline m-1'>Order ID #{orderPart._id}</h4>

@@ -15,6 +15,7 @@ const M_USER_DETAILS_URL = M_BASE_URL + '/userdetails';
 const ORDER_DETAILS_URL = M_BASE_URL + '/orderdetails';
 const UPDATE_PROFILE_URL = M_BASE_URL + '/user/updateprofile';
 const PRODUCT_DETAILS_URL = M_BASE_URL + '/productdetails/';
+const CREATE_ORDER_URL = M_BASE_URL + '/createorder';
 
 const NEW_PRODUCT_URL = M_BASE_URL + '/admin/newproduct';
 const UPDATE_PRODUCT_URL = M_BASE_URL + '/admin/updateproduct/';
@@ -51,6 +52,10 @@ export const M_UserDetailsApi = (test) => {
 
 export const M_AllUserDetailsApi = () => {
     return axios.get(M_ALL_USER_DETAILS_URL)
+}
+
+export const CreateOrderApi = (data) => {
+    return axios.post(CREATE_ORDER_URL, data)
 }
 
 export const OrderDetailsApi = (temp) => {

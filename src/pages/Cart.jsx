@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { UserDetailsApi, M_UserDetailsApi } from "../services/Api";
+import { UserDetailsApi, M_UserDetailsApi, CreateOrderApi } from "../services/Api";
 import { isAuthenticated } from "../services/Auth";
 import { Navigate } from "react-router-dom";
 
 export default function Cart({ cartItems, setCartItems }) {
     const [complete, setComplete] = useState(false);
     const [user, setUser] = useState({ fullName: "", email: "", pno: "", address: "", localId: "" });
-    const order = {user: user, cartItems: cartItems};
+    const order = { user: user, cartItems: cartItems };
 
 
     useEffect(() => {
@@ -16,24 +16,25 @@ export default function Cart({ cartItems, setCartItems }) {
             UserDetailsApi().then((response) => {
                 setUser(values => ({
                     ...values,
-                    fullName: response.data.users[0].displayName,
-                    email: response.data.users[0].email,
                     localId: response.data.users[0].localId
                 }))
             })
         }
     }, [])
 
-    useEffect(()=>{
-        if(isAuthenticated() && user.localId){
-            M_UserDetailsApi(user.localId).then((response)=>{
-                setUser(values => ({...values,
-                    pno:response.data.user[0].pno,
-                    address:response.data.user[0].address
+    useEffect(() => {
+        if (isAuthenticated() && user.localId) {
+            M_UserDetailsApi(user.localId).then((response) => {
+                setUser(values => ({
+                    ...values,
+                    fullName: response.data.user[0].fullName,
+                    email: response.data.user[0].email,
+                    pno: response.data.user[0].pno,
+                    address: response.data.user[0].address
                 }));
             })
         }
-    },[user.localId])
+    }, [user.localId])
 
     function increaseQty(item) {
         if (item.product.stock === item.qty) {
@@ -61,26 +62,28 @@ export default function Cart({ cartItems, setCartItems }) {
     }
 
     function removeItem(item) {
-        /*eslint-disable-next-line*/
         const updatedItems = cartItems.filter((i) => {
             if (i.product._id !== item.product._id) {
                 return true;
             }
+            return false;
         })
-        setCartItems(updatedItems)
+        setCartItems(updatedItems);
+        toast.success("Item Removed");
     }
 
+
+
     function placeOrderHandler() {
-        fetch(process.env.REACT_APP_API_URL + '/createorder', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(order)
-        })
-            .then(() => {
-                setCartItems([]);
-                setComplete(true);
-                toast.success("Order Success!")
-            })
+        try {
+            CreateOrderApi(order);
+            setCartItems([]);
+            toast.success("Order Success!");
+        } catch (err) {
+            console.log(err)
+        } finally {
+            setComplete(true);
+        }
     }
 
     if (!isAuthenticated()) {
@@ -94,7 +97,7 @@ export default function Cart({ cartItems, setCartItems }) {
                 <h2 className="mt-5 text-center">Your Cart: <b>{cartItems.length} items</b></h2>
                 <div className="col-12 col-lg-9">
                     {cartItems.map((item) =>
-                    (<>
+                    (<div key={item.product._id}>
                         <hr />
                         <div className="cart-item">
                             <div className="row">
@@ -122,14 +125,14 @@ export default function Cart({ cartItems, setCartItems }) {
                                         </div>
 
                                         <div className="col text-center m-3">
-                                            <i onClick={() => removeItem(item)} className="fa fa-trash btn btn-danger"></i>
+                                            <span onClick={() => removeItem(item)}><i className="fa fa-trash btn btn-danger"></i></span>
                                         </div>
                                     </div>
                                 </div>
 
                             </div>
                         </div>
-                    </>)
+                    </div>)
                     )}
 
                 </div>

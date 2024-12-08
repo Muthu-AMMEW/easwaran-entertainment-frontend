@@ -29,7 +29,7 @@ export default function Home() {
 
             <section id="products" className="container mt-5">
                 <div className="row">
-                    {products.map((product) => <ProductCard product={product} />)}
+                    {products.map((product) => <ProductCard key={product._id} product={product} />)}
                 </div>
             </section>
         </>
