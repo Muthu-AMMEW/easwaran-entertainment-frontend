@@ -61,9 +61,6 @@ export default function UserDropDown() {
                     <li><Link className="dropdown-item fw-medium" to={'/orderdetails'}><i className="fa-solid fa-truck-fast fa-beat-fade me-2" style={{color: "#63E6BE"}}></i>Orders</Link>
                     </li>
                     <li>
-                    <Link to={"/home"} className="btn btn-outline-danger d-block d-sm-none my-3 mx-1">Home</Link>
-                    </li>
-                    <li>
                         <hr className="dropdown-divider" />
                     </li>
                     <li><a className="dropdown-item me-2" href="https://m.me/Muthu.AMMEW"><i

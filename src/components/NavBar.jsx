@@ -73,6 +73,7 @@ export default function NavBar({ cartItems }) {
                         <h5 className="badge text-black m-1 mt-0">{cartItems.length}</h5>
                         <i className="fa-solid fa-cart-shopping fa-beat fa-xl mt-0 pt-0" style={{ color: "#FFD43B" }}></i>
                     </Link>}
+                    <Link to={"/home"} className="btn btn-outline-danger d-block d-sm-none my-3 mx-1">Home</Link>
                 </div>
             </div >
         </nav >
