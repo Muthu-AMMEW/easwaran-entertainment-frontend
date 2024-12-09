@@ -47,7 +47,8 @@ export default function UserDropDown() {
                     </li>
 
                     <li><Link className="dropdown-item" to={"/profile"}>
-                    <i className="fa-regular fa-id-card"></i><span className="h6 m-2">Profile</span></Link></li>
+                    <i className="fa-regular fa-id-card"></i><span className="h6 m-2">Profile</span></Link>
+                    </li>
 
                     <li>
                     <Link className="dropdown-item" to={"/cart"}>
@@ -60,14 +61,15 @@ export default function UserDropDown() {
                     <li><Link className="dropdown-item fw-medium" to={'/orderdetails'}><i className="fa-solid fa-truck-fast fa-beat-fade me-2" style={{color: "#63E6BE"}}></i>Orders</Link>
                     </li>
                     <li>
+                    <Link to={"/home"} className="btn btn-outline-danger d-block d-sm-none my-3 mx-1">Home</Link>
+                    </li>
+                    <li>
                         <hr className="dropdown-divider" />
                     </li>
                     <li><a className="dropdown-item me-2" href="https://m.me/Muthu.AMMEW"><i
                         className="fa-brands fa-facebook-messenger fa-lg me-2"></i>Chat</a></li>
                 </ul>
             </div>
-
-            <Link className="nav-link" to="/home" ></Link>
         </>
     )
 }
