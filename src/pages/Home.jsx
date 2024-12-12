@@ -4,7 +4,7 @@ import { isAuthenticated } from "../services/Auth";
 import ProductCard from '../components/ProductCard';
 import { useSearchParams } from 'react-router-dom';
 import { GetProductsApi } from "../services/Api";
-// import './Home.css';
+import './Home.css';
 
 
 export default function Home() {

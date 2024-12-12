@@ -56,6 +56,12 @@ export default function ForgetPassword() {
     setInputs(values => ({ ...values, [name]: value }))
   }
 
+  function handleReset() {
+    setInputs({
+      email: ""
+    })
+
+  }
   if (isAuthenticated()) {
     //redirect user to home
     return <Navigate to="/home" />
@@ -97,7 +103,7 @@ export default function ForgetPassword() {
                 }
 
                 <button className="btn btn-primary me-5" type="submit">Submit</button>
-                <button className="btn btn-danger" type="reset">Reset</button>
+                <button className="btn btn-danger" type="reset" onClick={handleReset}>Reset</button>
               </div>
             </form>
           </div>

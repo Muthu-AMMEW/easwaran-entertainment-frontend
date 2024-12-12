@@ -11,7 +11,7 @@ export default function LoginPage() {
 
     const [inputs, setInputs] = useState({
         email: "",
-        pwd: "",
+        pwd: ""
     })
 
     const initialStateErrors = {
@@ -69,6 +69,13 @@ export default function LoginPage() {
             api();
         }
         setErrors({ ...errors });
+
+    }
+    function handleReset() {
+        setInputs({
+            email: "",
+            pwd: ""
+        })
 
     }
 
@@ -130,7 +137,7 @@ export default function LoginPage() {
                                     }
                                 </span>
                                 <button className="btn btn-primary me-5" type="submit">Submit</button>
-                                <button className="btn btn-danger" type="reset">Reset</button>
+                                <button className="btn btn-danger" type="reset" onClick={handleReset}>Reset</button>
                             </div>
                             <div className="text-center mt-4">Do not have an account? <Link className="fw-bold" to="/signup">Sign up</Link></div>
                         </form>

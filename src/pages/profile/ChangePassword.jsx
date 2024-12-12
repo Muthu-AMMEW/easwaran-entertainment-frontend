@@ -68,6 +68,14 @@ export default function ChangePassword() {
     setInputs(values => ({ ...values, [name]: value }))
   }
 
+  function handleReset() {
+    setInputs({
+      pwd: "",
+      cpwd: "",
+    })
+
+  }
+
   if (!isAuthenticated()) {
     //redirect user to home
     return <Navigate to="/home" />
@@ -117,7 +125,7 @@ export default function ChangePassword() {
                 }
 
                 <button className="btn btn-primary me-5" type="submit">Submit</button>
-                <button className="btn btn-danger" type="reset">Reset</button>
+                <button className="btn btn-danger" type="reset" onClick={handleReset}>Reset</button>
               </div>
             </form>
           </div>

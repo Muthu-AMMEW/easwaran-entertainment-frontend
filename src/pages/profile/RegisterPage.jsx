@@ -98,6 +98,18 @@ export default function RegisterPage() {
         setInputs(values => ({ ...values, [name]: value }))
     }
 
+    function handleReset() {
+        setInputs({
+            fullName: "",
+            email: "",
+            pno: "",
+            address: "",
+            pwd: "",
+            cpwd: "",
+        })
+    
+      }
+
     if (isAuthenticated()) {
         //redirect user to home
         return <Navigate to="/home" />
@@ -194,7 +206,7 @@ export default function RegisterPage() {
                                 }
 
                                 <button className="btn btn-primary me-5" type="submit">Submit</button>
-                                <button className="btn btn-danger" type="reset">Reset</button>
+                                <button className="btn btn-danger" type="reset" onClick={handleReset}>Reset</button>
                             </div>
                             <div className="text-center mt-4">Already have an account? <Link className="fw-bold" to={"/login"}>Log in</Link></div>
                         </form>
