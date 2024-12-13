@@ -94,7 +94,7 @@ export default function UpdateProduct() {
             errors.stock = true;
             hasError = true;
         }
-        if (!hasError) {
+        if (!hasError && isAuthenticated() && isAdmin()) {
             setLoading(true)
             async function api() {
                 try {

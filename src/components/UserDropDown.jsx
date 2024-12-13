@@ -63,8 +63,8 @@ export default function UserDropDown() {
                     <li>
                         <hr className="dropdown-divider" />
                     </li>
-                    <li><a className="dropdown-item me-2" href="https://m.me/Muthu.AMMEW"><i
-                        className="fa-brands fa-facebook-messenger fa-lg me-2"></i>Chat</a></li>
+                    <li><a className="dropdown-item me-2" href="https://wa.me/919022690226?text=Hi" target="_blank" rel="noreferrer"><i
+                        className="fa-brands fa-square-whatsapp fa-shake fa-2xl me-2" style={{ color: "#25d366" }}></i><span className="h6 ms-1">Chat</span></a></li>
                 </ul>
             </div>
         </>

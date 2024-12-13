@@ -3,6 +3,7 @@ import { M_AllUserDetailsApi } from "../../services/Api";
 import { isAdmin, isAuthenticated } from "../../services/Auth";
 import { MDBDataTable } from "mdbreact";
 import { Navigate } from 'react-router-dom';
+import AdminNavBar from "./AdminNavBar";
 
 export default function AllUserDetails() {
 
@@ -77,6 +78,7 @@ export default function AllUserDetails() {
 
   return (
     <>
+    <AdminNavBar />
     <div className=" container-fluid p-5">
             <h1 className="my-4">User List</h1>
             <div>

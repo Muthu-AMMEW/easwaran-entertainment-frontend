@@ -46,10 +46,10 @@ export default function UserProfile() {
         <div className='row p-5'>
             <div className=' col-12 col-md-6'>
                 <div className='row'>
-                    <div className='col-12 text-center mt-1 mt-md-5'>
-                        <figure>
-                            <img className="img-fluid" src={user.profile ?? '/pictures/logo.png'} alt='...' height={300} width={300} />
-                        </figure>
+                    <div className='col-12 text-center mt-1 mb-4 mt-md-5'>
+
+                        <img className="rounded-circle" src={user.profile ?? '/pictures/logo.png'} alt='...' width={300} height={300} />
+
                     </div>
                     <div className='col-12 text-center'>
                         <Link to={"/profile/updateprofile"} className='btn btn-success me-3'>Update Profile</Link>

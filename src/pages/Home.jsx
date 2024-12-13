@@ -5,17 +5,21 @@ import ProductCard from '../components/ProductCard';
 import { useSearchParams } from 'react-router-dom';
 import { GetProductsApi } from "../services/Api";
 import './Home.css';
+import Loader from "../components/Loader";
 
 
 export default function Home() {
 
     const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [searchParams] = useSearchParams();
 
     useEffect(() => {
+        setLoading(true);
         if (isAuthenticated()) {
             GetProductsApi(searchParams).then(res => setProducts(res.data.products))
         }
+        setLoading(false);
     }, [searchParams])
 
     if (!isAuthenticated()) {
@@ -23,7 +27,7 @@ export default function Home() {
         return <Navigate to="/login" />
     }
 
-    return (
+    return (loading ? <Loader /> :
         <>
             <h1 id="products_heading" className="text-decoration-underline text-center mt-3">Latest Food Items</h1>
 

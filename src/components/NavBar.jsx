@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Search from "./Search";
 import { useNavigate } from "react-router-dom"; //removed ", Navigate"
 import { logout, isAuthenticated } from "../services/Auth"
-import "./NavBar.css";
+import "./Components.css";
 import UserDropDown from "./UserDropDown";
 
 export default function NavBar({ cartItems }) {
@@ -52,7 +52,7 @@ export default function NavBar({ cartItems }) {
                                 <li>
                                     <hr className="dropdown-divider" />
                                 </li>
-                                <li><a className="dropdown-item me-2" href="https://m.me/PiyoosTech"><i
+                                <li><a className="dropdown-item me-2" href="https://m.me/Muthu.AMMEW"><i
                                     className="fa-brands fa-facebook-messenger fa-lg me-2"></i>Chat(Via FB page Message
                                     button)</a></li>
                             </ul>
