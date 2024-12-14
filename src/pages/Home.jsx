@@ -15,11 +15,19 @@ export default function Home() {
     const [searchParams] = useSearchParams();
 
     useEffect(() => {
-        setLoading(true);
-        if (isAuthenticated()) {
-            GetProductsApi(searchParams).then(res => setProducts(res.data.products))
+        async function api(){
+            try {
+                setLoading(true);
+                if (isAuthenticated()) {
+                    await GetProductsApi(searchParams).then(res => setProducts(res.data.products));
+                }
+            } catch (error) {
+                console.log(error);
+            }finally{
+                setLoading(false);
+            }
         }
-        setLoading(false);
+        api();
     }, [searchParams])
 
     if (!isAuthenticated()) {
