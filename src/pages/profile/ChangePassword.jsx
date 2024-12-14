@@ -73,7 +73,7 @@ export default function ChangePassword() {
       pwd: "",
       cpwd: "",
     })
-
+    toast.info("Reset Successfully");
   }
 
   if (!isAuthenticated()) {

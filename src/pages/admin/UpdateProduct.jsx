@@ -129,7 +129,7 @@ export default function UpdateProduct() {
             seller: "",
             stock: ""
         })
-
+        toast.info("Reset Successfully");
     }
 
     if (!isAuthenticated() || !isAdmin()) {

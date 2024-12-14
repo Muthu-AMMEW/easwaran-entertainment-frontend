@@ -60,7 +60,7 @@ export default function ForgetPassword() {
     setInputs({
       email: ""
     })
-
+    toast.info("Reset Successfully");
   }
   if (isAuthenticated()) {
     //redirect user to home

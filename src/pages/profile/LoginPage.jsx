@@ -76,7 +76,7 @@ export default function LoginPage() {
             email: "",
             pwd: ""
         })
-
+        toast.info("Reset Successfully");
     }
 
     if (isAuthenticated()) {

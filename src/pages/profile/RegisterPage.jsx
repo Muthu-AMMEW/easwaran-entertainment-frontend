@@ -107,8 +107,8 @@ export default function RegisterPage() {
             pwd: "",
             cpwd: "",
         })
-    
-      }
+        toast.info("Reset Successfully");
+    }
 
     if (isAuthenticated()) {
         //redirect user to home

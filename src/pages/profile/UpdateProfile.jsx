@@ -86,7 +86,7 @@ export default function UpdateProfile() {
           toast.success("Profile Updated Successfully");
         } catch (err) {
           console.log(err)
-            setErrors({ ...errors, custom_error: err });
+          setErrors({ ...errors, custom_error: err });
         } finally {
           setLoading(false)
         }
@@ -101,6 +101,17 @@ export default function UpdateProfile() {
     const name = event.target.name;
     const value = event.target.value;
     setInputs(values => ({ ...values, [name]: value }))
+  }
+
+  function handleReset() {
+    setInputs({
+      fullName: "",
+      email: "",
+      pno: "",
+      address: "",
+      profile: ""
+    })
+    toast.info("Reset Successfully");
   }
 
   return (
@@ -123,9 +134,9 @@ export default function UpdateProfile() {
               <div className="w-100 mt-3">
                 <label htmlFor="email" className="form-label">Email</label>
                 <input type="email" className="form-control" id="email" value={inputs.email} disabled placeholder="Enter email" name="email" />
-                  <span className="text-danger form-text bg-warning-subtle" >
-                    Due to security reason you can not change Email Address.
-                  </span>
+                <span className="text-danger form-text bg-warning-subtle" >
+                  Due to security reason you can not change Email Address.
+                </span>
               </div>
               <div className="w-100 mt-3">
                 <label htmlFor="pno" className="form-label">Phone Number</label>
@@ -172,7 +183,7 @@ export default function UpdateProfile() {
                 }
 
                 <button className="btn btn-primary me-5" type="submit">Submit</button>
-                <button className="btn btn-danger" type="reset">Reset</button>
+                <button className="btn btn-danger" type="reset" onClick={handleReset}>Reset</button>
               </div>
             </form>
           </div>
