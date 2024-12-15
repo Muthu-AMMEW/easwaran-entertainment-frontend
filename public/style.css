@@ -1,0 +1,24 @@
+.banner{
+    background-image: url("./pictures/banner.png");
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: 100% 100%;
+
+}
+.bodyBGPic{
+    background-image: url("./pictures/background-pic.jpg");
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: 100% 100%;
+    
+}
+.youtubeRed{
+    background-color: rgb(236, 10, 10);
+}
+
+[class *= "container"]{
+    padding: 0;
+}
+i{
+    margin-right: 10px;
+}
