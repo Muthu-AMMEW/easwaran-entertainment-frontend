@@ -4,7 +4,7 @@ import { isAuthenticated } from '../../services/Auth';
 import { storeAdminData, storeUserData } from '../../services/Storage';
 import './RegisterPage.css';
 import { Link, Navigate } from 'react-router-dom';
-
+import { toast } from 'react-toastify';
 
 export default function RegisterPage() {
 

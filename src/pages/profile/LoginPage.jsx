@@ -5,7 +5,7 @@ import { Link, Navigate } from 'react-router-dom';
 import { LoginApi, M_UserDetailsApi } from '../../services/Api';
 import { storeAdminData, storeUserData } from '../../services/Storage';
 import { isAuthenticated } from '../../services/Auth';
-
+import { toast } from 'react-toastify';
 
 export default function LoginPage() {
 
