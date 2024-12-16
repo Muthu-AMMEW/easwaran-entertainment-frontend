@@ -15,9 +15,9 @@ export default function Search() {
     };
 
     return (<>
-        <div>
+        <div className='me-2'>
             <div className="d-flex form-control border-danger">
-                <input className="flex-grow-1 border-0" type="search" onBlur={searchHandler} placeholder="Enter Product Name ..." onChange={(e) => setKeyword(e.target.value)} onKeyDown={handleKeyDown} style={{ outline: "none" }} aria-label="Search" />
+                <input className="flex-grow-1 border-0 bg-transparent" type="search" onBlur={searchHandler} placeholder="Enter Video Name ..." onChange={(e) => setKeyword(e.target.value)} onKeyDown={handleKeyDown} style={{ outline: "none" }} aria-label="Search" />
                 <i className="fa-solid fa-magnifying-glass fa-bounce ms-3 mt-1" onClick={searchHandler}></i>
             </div>
         </div>

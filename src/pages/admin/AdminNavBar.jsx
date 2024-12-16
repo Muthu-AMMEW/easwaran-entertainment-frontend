@@ -5,15 +5,15 @@ export default function AdminNavBar() {
     <>
     <div className='d-flex justify-content-center bg-body-secondary'>
         <div>
-        <Link to={'/admin/newproduct'} className="btn btn-outline-danger mx-lg-3">New Product</Link>
+        <Link to={'/admin/newvideo'} className="btn btn-outline-danger mx-lg-3">New Video</Link>
         </div>
 
         <div>
-        <Link to={'/admin/allproductdetails'} className="btn btn-outline-danger mx-lg-3">All Product</Link>
+        <Link to={'/admin/allvideodetails'} className="btn btn-outline-danger mx-lg-3">All Video</Link>
         </div>
 
         <div>
-        <Link to={'/admin'} className="btn btn-outline-danger mx-lg-3">Orders</Link>
+        <Link to={'/admin'} className="btn btn-outline-danger mx-lg-3">Contacts</Link>
         </div>
 
         <div>

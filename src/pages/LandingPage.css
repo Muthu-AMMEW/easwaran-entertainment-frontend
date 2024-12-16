@@ -10,7 +10,7 @@
     font-family: 'Times New Roman', Times, serif;
     font-style: italic;
     font-weight: bolder;
-    text-shadow: 2px 2px black;
+    text-shadow: 2px 2px rgb(255, 0, 0);
 }
 .welcome-message {
     background-image: url("/public/pictures/menu-item-02.jpg");

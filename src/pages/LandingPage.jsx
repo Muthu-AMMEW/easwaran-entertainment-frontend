@@ -9,8 +9,8 @@ export default function LandingPage() {
             {/* <!-- Body left side start --> */}
             <div className="welcome-message col-md-4 position-relative">
                 <div className="mm-center">
-                    <h2 className="fst-italic">THE BEST EXPERIENCE</h2>
-                    <Link to={"/home"} className="btn btn-danger red p-3 rounded-5">ORDER NOW</Link>
+                    <h2 className="fst-italic">THE BEST ENTERTAINMENT</h2>
+                    <Link to={"/home"} className="btn btn-danger red p-3 rounded-5">WATCH NOW</Link>
                 </div>
 
             </div>

@@ -1,32 +1,32 @@
 import { useEffect, useState } from "react";
-import { AllOrderDetailsApi } from "../../services/Api";
+import { AllContactDetailsApi } from "../../services/Api";
 import { isAdmin, isAuthenticated } from "../../services/Auth";
 import { MDBDataTable } from "mdbreact";
 import { Link } from "react-router-dom";
 import { Navigate } from 'react-router-dom';
 
 
-export default function AllOrderDetails() {
+export default function AllContactDetails() {
 
     const [loading, setLoading] = useState(false);
-    const [orders, setOrders] = useState([]);
+    const [contacts, setContacts] = useState([]);
 
 
     useEffect(() => {
         if (isAuthenticated() && isAdmin()) {
             setLoading(true);
-            AllOrderDetailsApi().then((response) => {
-                setOrders(response.data.orders)
+            AllContactDetailsApi().then((response) => {
+                setContacts(response.data.contacts)
             })
             setLoading(false);
         }
     }, [])
 
-    const orderData = () => {
+    const contactData = () => {
         const data = {
             columns: [
                 {
-                    label: 'Order ID ↕',
+                    label: 'Contact ID ↕',
                     field: 'id',
                     sort: 'asc'
                 },
@@ -57,7 +57,7 @@ export default function AllOrderDetails() {
                 },
 
                 {
-                    label: 'Order Details',
+                    label: 'Contact Details',
                     field: 'actions',
                     sort: 'asc'
                 }
@@ -66,17 +66,17 @@ export default function AllOrderDetails() {
             rows: []
         }
 
-        orders.forEach(order => {
+        contacts.forEach(contact => {
             data.rows.push({
-                id: order._id,
-                name: order.fullName,
-                email: order.email,
-                pno: order.pno,
-                address: order.address,
-                date: order.createdAt,
+                id: contact._id,
+                name: contact.fullName,
+                email: contact.email,
+                pno: contact.pno,
+                address: contact.address,
+                date: contact.createdAt,
                 actions: (
                     <>
-                        <Link className="me-1" to={`/admin/orderiddetails/${order._id}`}>Full Order Detils</Link>
+                        <Link className="me-1" to={`/admin/contactiddetails/${contact._id}`}>Full Contact Detils</Link>
                     </>)
             })
         })
@@ -90,11 +90,11 @@ export default function AllOrderDetails() {
     return (
         <>
             <div className=" container-fluid p-5">
-                <h1 className="my-4">Order List</h1>
+                <h1 className="my-4">Contact List</h1>
                 <div>
                     {!loading &&
                         <MDBDataTable
-                            data={orderData()}
+                            data={contactData()}
                             bordered
                             striped
                             hover

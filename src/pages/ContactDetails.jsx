@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from "react";
-import { UserDetailsApi, OrderDetailsApi } from "../services/Api";
+import { UserDetailsApi, ContactDetailsApi } from "../services/Api";
 import { isAuthenticated } from "../services/Auth";
 import { Navigate } from "react-router-dom";
-export default function OrderDetails() {
+export default function ContactDetails() {
 
     const [user, setUser] = useState({ fullName: "", email: "", localId: "" });
-    const [order, setOrder] = useState();
+    const [contact, setContact] = useState();
 
     useEffect(() => {
         if (isAuthenticated()) {
@@ -24,8 +24,8 @@ export default function OrderDetails() {
 
     useEffect(() => {
         if (isAuthenticated() && user.localId) {
-            OrderDetailsApi(user.localId).then((response) => {
-                setOrder(response.data.order)
+            ContactDetailsApi(user.localId).then((response) => {
+                setContact(response.data.contact)
             })
         }
     }, [user.localId])
@@ -36,42 +36,42 @@ export default function OrderDetails() {
     }
 
 
-    return (order &&
+    return (contact &&
         <>
             <div className="container-fluid p-2">
-                <h2 className="mt-5 text-center">You placed <b>{order.length}</b> orders</h2>
-                {order.map((orderPart) =>
+                <h2 className="mt-5 text-center">You placed <b>{contact.length}</b> contacts</h2>
+                {contact.map((contactPart) =>
                 (   
-                    <div className='m-lg-5' key={orderPart._id}>
+                    <div className='m-lg-5' key={contactPart._id}>
                     <div className='m-lg-5'>
                     <div className='m-sm-5 border border-5 p-3'>
-                        <h4 className='text-center text-decoration-underline m-1'>Order ID #{orderPart._id}</h4>
-                        <div><span className='fw-medium'>Order Status : </span>{orderPart.status}</div>
-                        <div><span className='fw-medium'>Name : </span>{orderPart.fullName}</div>
-                        <div><span className='fw-medium'>Address : </span>{orderPart.address}</div>
-                        <div><span className='fw-medium'>Phone Number : </span>{orderPart.pno}</div>
-                        <div><span className='fw-medium'>Email Address : </span>{orderPart.email}</div>
-                        <div><span className='fw-medium'>Date : </span>{orderPart.createdAt}</div>
-                        <div><span className='fw-medium'>Total Amount : </span>Rs. {orderPart.amount}</div>
-                        <h5 className='text-center text-decoration-underline m-1'>Order Items</h5>
+                        <h4 className='text-center text-decoration-underline m-1'>Contact ID #{contactPart._id}</h4>
+                        <div><span className='fw-medium'>Contact Status : </span>{contactPart.status}</div>
+                        <div><span className='fw-medium'>Name : </span>{contactPart.fullName}</div>
+                        <div><span className='fw-medium'>Address : </span>{contactPart.address}</div>
+                        <div><span className='fw-medium'>Phone Number : </span>{contactPart.pno}</div>
+                        <div><span className='fw-medium'>Email Address : </span>{contactPart.email}</div>
+                        <div><span className='fw-medium'>Date : </span>{contactPart.createdAt}</div>
+                        <div><span className='fw-medium'>Total Amount : </span>Rs. {contactPart.amount}</div>
+                        <h5 className='text-center text-decoration-underline m-1'>Contact Items</h5>
                         <div className="cart-item my-1">
-                            {orderPart.cartItems.map(item => (
+                            {contactPart.cartItems.map(item => (
                                 <>
                                     <hr />
                                     <div className="cart-item">
                                         <div className="row">
                                             <div className="col-6 col-lg-3 text-center">
-                                                <img src={item.product.images[0].image} alt={item.product.name} height="130" width="130" />
+                                                <img src={item.video.images[0].image} alt={item.video.name} height="130" width="130" />
                                             </div>
 
                                             <div className='col-6 col-lg-9'>
                                                 <div className="row d-flex flex-column flex-lg-row justify-content-center align-items-center">
                                                     <h6 className="col text-center m-2">
-                                                        <Link className='text-black' to={"/product/" + item.product._id} >{item.product.name}</Link>
+                                                        <Link className='text-black' to={"/video/" + item.video._id} >{item.video.name}</Link>
                                                     </h6>
 
                                                     <div className="col text-center m-2">
-                                                        <h5>Rs. {item.product.price}</h5>
+                                                        <h5>Rs. {item.video.price}</h5>
                                                     </div>
 
                                                     <div className="col text-center m-2">

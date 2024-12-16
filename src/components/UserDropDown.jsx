@@ -34,12 +34,11 @@ export default function UserDropDown() {
 
     return (
         <>
-            <div className="dropdown m-3">
+            <div className="dropdown">
 
-                <a className="nav-link dropdown-toggle" href="www.google.com" role="button"
+                <a className="nav-link dropdown-toggle text-white-50" href="www.google.com" role="button"
                     data-bs-toggle="dropdown" aria-expanded="false">
                     <i className="fa-solid fa-user fa-lg"></i><span className="h6 m-1">User</span>
-
                 </a>
                 <ul className="dropdown-menu">
 
@@ -58,7 +57,7 @@ export default function UserDropDown() {
 
                     {user.role === 'admin' ? <li><Link className="dropdown-item" to={'/admin'}><i className="fa-solid fa-bars-progress fa-fade"></i><span className="h6 m-2">Dashboard</span></Link></li>:null}
 
-                    <li><Link className="dropdown-item fw-medium" to={'/orderdetails'}><i className="fa-solid fa-truck-fast fa-beat-fade me-2" style={{color: "#63E6BE"}}></i>Orders</Link>
+                    <li><Link className="dropdown-item fw-medium" to={'/contactdetails'}><i className="fa-solid fa-truck-fast fa-beat-fade me-2" style={{color: "#63E6BE"}}></i>Contacts</Link>
                     </li>
                     <li>
                         <hr className="dropdown-divider" />
