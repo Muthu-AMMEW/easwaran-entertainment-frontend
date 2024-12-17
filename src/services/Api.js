@@ -2,7 +2,7 @@ import axios from "axios";
 import { getUserData } from './Storage';
 
 const FIRE_BASE_URL = "https://identitytoolkit.googleapis.com/v1";
-const API_KEY = "AIzaSyAfroWxLy7nujGexNq5_x-4iKCaPGpxl_k";
+const API_KEY = process.env.REACT_APP_FIRE_BASE_API_KEY;
 const REGISTER_URL =  FIRE_BASE_URL+`/accounts:signUp?key=${API_KEY}`;
 const LOGIN_URL =  FIRE_BASE_URL+`/accounts:signInWithPassword?key=${API_KEY}`;
 const USER_DETAILS_URL =  FIRE_BASE_URL+`/accounts:lookup?key=${API_KEY}`;

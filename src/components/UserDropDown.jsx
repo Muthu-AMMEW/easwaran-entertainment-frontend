@@ -1,24 +1,35 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { M_UserDetailsApi, UserDetailsApi} from "../services/Api";
-import { isAuthenticated } from "../services/Auth";
+import { isAuthenticated, logout } from "../services/Auth";
+import { useNavigate } from "react-router-dom";
 
 
 export default function UserDropDown() {
+    const navigate = useNavigate();
     const [user, setUser] = useState({ fullName: "", email: "", localId: "", role:"" });
 
     useEffect(() => {
         if (isAuthenticated()) {
-            UserDetailsApi().then((response) => {
-                setUser(values => ({
-                    ...values,
-                    email: response.data.users[0].email,
-                    localId: response.data.users[0].localId
 
-                }))
-            })
+            async function api() {
+                try {
+                    let response = await UserDetailsApi();
+                    setUser(values => ({
+                        ...values,
+                        localId: response.data.users[0].localId,
+                    }))
+                } catch (err) {
+                    console.log(err)
+                    if (err.response.data.error.message === "INVALID_ID_TOKEN") {
+                        logout();
+                        navigate('/login');
+                    }
+                }
+            }
+            api();
         }
-    }, [])
+    }, [navigate])
 
     useEffect(() => {
         if (isAuthenticated() && user.localId) {
@@ -26,7 +37,8 @@ export default function UserDropDown() {
                 setUser(values => ({
                     ...values,
                     fullName: response.data.user[0].fullName,
-                    role: response.data.user[0].role
+                    role: response.data.user[0].role,
+                    email: response.data.user[0].email
                 }));
             })
         }

@@ -48,6 +48,7 @@ function App() {
             <Route path="/admin/alluserdetails" element={<AllUserDetails />} />
             <Route path="/admin/contactiddetails/:id" element={<ContactIdDetails />} />
             <Route path="/admin/contactdetails/:id" element={<ContactDetails />} />
+            <Route path="*" element={<LandingPage />} />
           </Routes>
           <Foot />
         </div>
