@@ -1,12 +1,11 @@
 import { useState } from "react";
 import './Contact.css';
-import axios from 'axios';
 import { toast } from 'react-toastify';
-
+import {CreateContactApi} from '../services/Api'
 
 export default function Contact() {
   const [inputs, setInputs] = useState({ fname: "", lname: "", pno: "", email: "", address: "", reason: "" });
-
+  
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -35,23 +34,20 @@ export default function Contact() {
       toast.error("Please Enter Reason for Contact");
 
     } else {
-      await axios.post("https://easwaran-entertainment-backend-deploy-10091389336.development.catalystappsail.com/inputcontact", inputs);
-
-      toast.success("Submited Successfully...");
+      async function createContactHandler() {
+        try {
+          await CreateContactApi(inputs);
+          setInputs({ fname: "", lname: "", pno: "", email: "", address: "", reason: "" });
+          toast.success("Submited Successfully...");
+        } catch (err) {
+          console.log(err)
+        } finally {
+          
+        }
+      }
+      createContactHandler();
     }
   }
-
-  // function placeContactHandler() {
-  //   try {
-  //     CreateContactApi(contact);
-  //     setCartItems([]);
-  //     toast.success("Contact Success!");
-  //   } catch (err) {
-  //     console.log(err)
-  //   } finally {
-  //     setComplete(true);
-  //   }
-  // }
 
   function resetFunc() {
     setInputs({ fname: "", lname: "", pno: "", email: "", address: "", reason: "" });

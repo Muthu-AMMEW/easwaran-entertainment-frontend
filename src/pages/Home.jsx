@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
-import { isAuthenticated } from "../services/Auth";
 import VideoCard from '../components/VideoCard';
 import { useSearchParams } from 'react-router-dom';
 import { GetVideosApi } from "../services/Api";
@@ -31,9 +29,7 @@ export default function Home() {
         async function api() {
             try {
                 setLoading(true);
-                if (isAuthenticated()) {
-                    await GetVideosApi(searchParams).then(res => setVideos(res.data.videos));
-                }
+                await GetVideosApi(searchParams).then(res => setVideos(res.data.videos));
             } catch (error) {
                 console.log(error);
             } finally {
@@ -43,20 +39,13 @@ export default function Home() {
         api();
     }, [searchParams])
 
-    if (!isAuthenticated()) {
-        //redirect user to login
-        return <Navigate to="/login" />
-    }
-
     return (
         <>
-            {loading ? <Loader /> :
+            {loading ? <Loader /> : videos.length === 0 ? <div className="bodyBGPic text-center h2 text-white mb-0" style={{paddingTop: '200px', paddingBottom:"200px"}}>Not Found</div> :
                 <>
                     <section id="videos" className="container-fluid text-center bodyBGPic">
 
-                        <div className="row">
-                            {currentPosts.map((video) => <VideoCard key={video._id} video={video} />)}
-                        </div>
+                        {currentPosts.map((video) => <VideoCard key={video._id} video={video} />)}
 
                         <nav aria-label="Page Navigation">
                             <ul class="pagination justify-content-center">

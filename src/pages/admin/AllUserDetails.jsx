@@ -79,9 +79,9 @@ export default function AllUserDetails() {
   return (
     <>
     <AdminNavBar />
-    <div className=" container-fluid p-5">
-            <h1 className="my-4">User List</h1>
-            <div>
+    <div className=" container-fluid p-5 bodyBGPic">
+            <h1 className="text-white-50">User List</h1>
+            <div className="bg-body-tertiary bg-opacity-50">
                 {!loading && 
                     <MDBDataTable
                         data={userData()}

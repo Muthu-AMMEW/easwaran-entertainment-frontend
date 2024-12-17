@@ -30,7 +30,7 @@ export default function Foot() {
                         </div>
                     </div>
                     <div className="col-6 col-md d-flex flex-column mb-2">
-                        <h5>For Restaurants</h5>
+                        <h5>For Videos</h5>
                         <div>
                             <a href="www.#.com">Partner With Us</a><br />
                             <a href="www.#.com">Apps For You</a><br />

@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import { RegisterApi, M_RegisterApi } from '../../services/Api';
-import { isAuthenticated } from '../../services/Auth';
-import { storeAdminData, storeUserData } from '../../services/Storage';
+import { isAdmin, isAuthenticated } from '../../services/Auth';
 import './RegisterPage.css';
-import { Link, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 export default function RegisterPage() {
@@ -71,9 +70,8 @@ export default function RegisterPage() {
             async function api() {
                 try {
                     let fireRegister = await RegisterApi(inputs);
-                    const mRegister = await M_RegisterApi(inputs, fireRegister);
-                    storeAdminData(mRegister.data.user.role);
-                    storeUserData(fireRegister.data.idToken);
+                    await M_RegisterApi(inputs, fireRegister);
+                    toast.success("New User Successfully Created");
                 } catch (err) {
                     console.log(err)
                     if (err.response.data.error.message === "EMAIL_EXISTS") {
@@ -110,10 +108,9 @@ export default function RegisterPage() {
         toast.info("Reset Successfully");
     }
 
-    if (isAuthenticated()) {
-        //redirect user to home
-        return <Navigate to="/home" />
-    }
+    if (!isAuthenticated() || !isAdmin()) {
+        return <Navigate to="/login" />
+      }
 
     return (
         <>
@@ -121,7 +118,7 @@ export default function RegisterPage() {
                 <div className="col-11 col-sm-8 col-md-7 col-lg-6 col-xl-5">
 
                     <div className="d-flex flex-column justify-content-center align-items-center w-100 p-5 rounded-5 bg-body-tertiary bg-opacity-50">
-                        <div className='text-center h2'>Register Now</div>
+                        <div className='text-center h2'>Create Users</div>
                         <form className="w-100" onSubmit={handleSubmit}>
                             <div className="w-100 mt-3">
                                 <label htmlFor="fullName" className="form-label">Full Name</label>
@@ -160,7 +157,7 @@ export default function RegisterPage() {
                                 }
                             </div>
                             <div className="w-100 mt-3">
-                                <label htmlFor="pwd" className="form-label">Create a password</label>
+                                <label htmlFor="pwd" className="form-label">Create a Temporary Password</label>
                                 <input type="password" className="form-control" id="pwd" onChange={handleChange} placeholder="Enter password" name="pwd" value={inputs.pwd} />
                                 {errors.pwd ?
                                     (<span className="text-danger bg-warning-subtle" >
@@ -208,7 +205,6 @@ export default function RegisterPage() {
                                 <button className="btn btn-primary me-5" type="submit">Submit</button>
                                 <button className="btn btn-danger" type="reset" onClick={handleReset}>Reset</button>
                             </div>
-                            <div className="text-center mt-4">Already have an account? <Link className="fw-bold" to={"/login"}>Log in</Link></div>
                         </form>
                     </div>
                 </div>

@@ -9,18 +9,18 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NavBar from './components/NavBar';
 import Foot from './components/Foot';
-import ContactDetails from './pages/ContactDetails';
+import ContactDetails from './pages/admin/ContactDetails';
 import ChangePassword from './pages/profile/ChangePassword';
 import ForgetPassword from './pages/profile/ForgetPassword';
 import UpdateProfile from './pages/profile/UpdateProfile';
 import UserProfile from './pages/profile/UserProfile';
 import Dashboard from './pages/admin/Dashboard';
-import AllVideoDetails from './pages/admin/AllVideoDetails';
 import ContactIdDetails from './pages/admin/ContactIdDetails';
 import NewVideo from './pages/admin/NewVideo';
 import UpdateVideo from './pages/admin/UpdateVideo';
 import AllUserDetails from './pages/admin/AllUserDetails';
 import Contact from './pages/Contact';
+import AllContactDetails from './pages/admin/AllContactDetails';
 
 function App() {
   return (
@@ -37,17 +37,17 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/video/:id" element={<VideoDetails />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/contactdetails" element={<ContactDetails />} />
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/profile/changepassword" element={<ChangePassword />} />
             <Route path="/profile/updateprofile" element={<UpdateProfile />} />
             <Route path="/forgetpassword" element={<ForgetPassword />} />
             <Route path="/admin" element={<Dashboard />} />
-            <Route path="/admin/allvideodetails" element={<AllVideoDetails />} />
+            <Route path="/admin/allcontactdetails" element={<AllContactDetails />} />
             <Route path="/admin/newvideo" element={<NewVideo />} />
             <Route path="/admin/updatevideo/:id" element={<UpdateVideo />} />
             <Route path="/admin/alluserdetails" element={<AllUserDetails />} />
             <Route path="/admin/contactiddetails/:id" element={<ContactIdDetails />} />
+            <Route path="/admin/contactdetails/:id" element={<ContactDetails />} />
           </Routes>
           <Foot />
         </div>

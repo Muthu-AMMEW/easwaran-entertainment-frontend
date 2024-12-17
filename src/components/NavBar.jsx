@@ -47,23 +47,31 @@ export default function NavBar({ cartItems }) {
 								</a>
 								<ul className="dropdown-menu">
 									<li><a className="dropdown-item" href="https://www.facebook.com/EaswaranEntertainment">
-										<i className="fa-brands fa-facebook fa-beat bg-white rounded-5 me-2 fa-lg" style={{ color: "#2568ef" }}></i>Facebook</a>
+										<i className="fa-brands fa-facebook fa-beat me-2 fa-lg" style={{ color: "#2568ef" }}></i>Facebook</a>
 									</li>
 									<li><a className="dropdown-item" href="https://EaswaranEntertainment.blogspot.com">
-									<i className="fa-brands fa-blogger fa-fade bg-white rounded-5 me-2 fa-lg" style={{ color: "#ff5722" }}></i>Blogger</a></li>
-									<li><a className="dropdown-item" href="https://www.x.com">
-										<i className="fa-brands fa-twitter fa-shake bg-white rounded-5 me-2 fa-lg" style={{ color: "#1da1f2" }}></i>Twitter</a></li>
-									<li><a className="dropdown-item" href="https://www.youtube.com">
-										<i className="fa-brands fa-youtube fa-beat-fade bg-white rounded-5 me-2 fa-lg" style={{ color: "#ff0000" }}></i>Youtube</a></li>
-									<li><a className="dropdown-item" href="https://www.instagram.com">
-										<i className="fa-brands fa-square-instagram fa-beat-fade bg-white rounded-5 me-2 fa-lg" style={{ color: "#ff7b00" }}></i>Instagram</a></li>
+										<i className="fa-brands fa-blogger fa-beat me-2 fa-xl" style={{ color: "#ff5722" }}></i>Blogger</a></li>
+									{/* <li><a className="dropdown-item" href="https://www.x.com">
+										<i className="fa-brands fa-twitter fa-shake bg-white rounded-5 me-2 fa-lg" style={{ color: "#1da1f2" }}></i>Twitter</a></li> */}
+									<li><a className="dropdown-item" href="https://www.youtube.com/@EaswaranEntertainment">
+										<i className="fa-brands fa-youtube fa-beat me-2" style={{ color: "#ff0000" }}></i>Youtube</a></li>
+									{/* <li><a className="dropdown-item" href="https://www.instagram.com">
+										<i className="fa-brands fa-square-instagram fa-beat-fade bg-white rounded-5 me-2 fa-lg" style={{ color: "#ff7b00" }}></i>Instagram</a></li> */}
 
 									<li>
 										<hr className="dropdown-divider" />
 									</li>
 									<li><a className="dropdown-item me-2" href="https://www.facebook.com/PiyoosTech"><i
-										className="fa-brands fa-facebook-messenger fa-lg me-2"></i>Chat(Via FB page Message
-										button)</a></li>
+										className="fa-brands fa-facebook-messenger fa-shake fa-lg me-2" style={{ color: "#0080f7" }}></i>Chat(Via FB)</a></li>
+
+									<li><a className="dropdown-item me-2" href="https://wa.me/919876543210?text=Hi" target="_blank" rel="noreferrer"><i
+										className="fa-brands fa-square-whatsapp fa-shake fa-lg me-2" style={{ color: "#25d366" }}></i><span className="h6 ms-1">Chat</span></a></li>
+									<li>
+										<hr className="dropdown-divider" />
+									</li>
+									
+									{!isAuthenticated() && <li> <Link to={"/login"} className="btn btn-outline-success ms-3">Login</Link>
+									</li>}
 								</ul>
 							</li>
 
@@ -72,9 +80,7 @@ export default function NavBar({ cartItems }) {
 							</li>
 
 						</ul>
-						{!isAuthenticated() && <Link to={"/login"} className="btn btn-outline-success my-3 mx-1 d-none d-lg-block">Login</Link>}
-
-						{!isAuthenticated() && <Link to={"/signup"} className="btn btn-outline-warning my-3 mx-1">Sign Up</Link>}
+			
 						{isAuthenticated() && <div className="nav-link d-flex my-3 my-lg-0">
 							<UserDropDown />
 							<Link to={"/login"} className="mx-3" title="Logout" onClick={logoutUser}>

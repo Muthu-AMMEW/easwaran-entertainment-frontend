@@ -43,7 +43,7 @@ export default function UserProfile() {
     }
 
     return (<>
-        <div className='row p-5'>
+        <div className='row p-5 bg-dark-subtle'>
             <div className=' col-12 col-md-6'>
                 <div className='row'>
                     <div className='col-12 text-center mt-1 mb-4 mt-md-5'>

@@ -2,7 +2,7 @@ import axios from "axios";
 import { getUserData } from './Storage';
 
 const FIRE_BASE_URL = "https://identitytoolkit.googleapis.com/v1";
-const API_KEY = "AIzaSyA1vaXYivjKNtZGfaMNY1zzJbg6QT5L7mI";
+const API_KEY = "AIzaSyAfroWxLy7nujGexNq5_x-4iKCaPGpxl_k";
 const REGISTER_URL =  FIRE_BASE_URL+`/accounts:signUp?key=${API_KEY}`;
 const LOGIN_URL =  FIRE_BASE_URL+`/accounts:signInWithPassword?key=${API_KEY}`;
 const USER_DETAILS_URL =  FIRE_BASE_URL+`/accounts:lookup?key=${API_KEY}`;
@@ -12,7 +12,6 @@ const FORGET_PASSWORD_URL = FIRE_BASE_URL+`/accounts:sendOobCode?key=${API_KEY}`
 const M_BASE_URL = process.env.REACT_APP_API_URL;
 const M_REGISTER_URL = M_BASE_URL + `/signup`;
 const M_USER_DETAILS_URL = M_BASE_URL + '/userdetails';
-const CONTACT_DETAILS_URL = M_BASE_URL + '/contactdetails';
 const UPDATE_PROFILE_URL = M_BASE_URL + '/user/updateprofile';
 const VIDEO_DETAILS_URL = M_BASE_URL + '/videodetails/';
 const CREATE_CONTACT_URL = M_BASE_URL + '/createcontact';
@@ -23,6 +22,7 @@ const GET_VIDEOS_URL = M_BASE_URL + '/videos?';
 const DELETE_VIDEO_URL = M_BASE_URL +'/admin/deletevideo/';
 const M_ALL_USER_DETAILS_URL = M_BASE_URL + '/admin/alluserdetails';
 const ALL_CONTACT_DETAILS_URL = M_BASE_URL + '/admin/allcontactdetails';
+const CONTACT_DETAILS_URL = M_BASE_URL + '/admin/contactdetails/';
 const CONTACT_ID_DETAILS_URL = M_BASE_URL + '/admin/contactiddetails/';
 
 
@@ -58,11 +58,6 @@ export const CreateContactApi = (data) => {
     return axios.post(CREATE_CONTACT_URL, data)
 }
 
-export const ContactDetailsApi = (temp) => {
-    let data = { localId: temp}
-    return axios.post(CONTACT_DETAILS_URL, data)
-}
-
 export const AllContactDetailsApi = () => {
     return axios.get(ALL_CONTACT_DETAILS_URL)
 }
@@ -92,18 +87,23 @@ export const GetVideosApi =(searchParams) => {
 }
 
 export const NewVideoApi = (inputs) => {
-    let data = { name: inputs.name, price: inputs.price, description: inputs.description, ratings: inputs.ratings, images: [{image: inputs.images}], category: inputs.category, seller: inputs.seller, stock: inputs.stock}
+    let data = { sno: inputs.sno, title: inputs.title, videoLink: inputs.videos, description: inputs.description, keywords: inputs.keywords, notes: inputs.notes}
     return axios.post(NEW_VIDEO_URL, data)
 }
 
 export const UpdateVideoApi = (inputs, id) => {
-    let data = { name: inputs.name, price: inputs.price, description: inputs.description, ratings: inputs.ratings, images: [{image: inputs.images}], category: inputs.category, seller: inputs.seller, stock: inputs.stock}
+    let data = { sno: inputs.sno, title: inputs.title, videoLink: inputs.videos, description: inputs.description, keywords: inputs.keywords, notes: inputs.notes}
     return axios.put(UPDATE_VIDEO_URL+id, data)
 }
 
 export const ContactIdDetailsApi =(searchParams) => {
     return axios.get(CONTACT_ID_DETAILS_URL+searchParams)
 }
+
+export const ContactDetailsApi = (searchParams) => {
+    return axios.get(CONTACT_DETAILS_URL+searchParams)
+}
+
 
 export const DeleteVideoApi =(id)=>{
     return axios.delete(DELETE_VIDEO_URL+id)

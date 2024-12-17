@@ -9,26 +9,22 @@ export default function NewVideo() {
 
 
   const [inputs, setInputs] = useState({
-    name: "",
-    price: "",
+    sno: "",
+    title: "",
     description: "",
-    ratings: "",
-    images: "",
-    category: "select",
-    seller: "",
-    stock: ""
+    videos: "",
+    keywords: "",
+    notes: ""
   })
 
 
   const initialStateErrors = {
-    name: false,
-    price: false,
+    sno: false,
+    title: false,
     description: false,
-    ratings: false,
-    images: false,
-    category: false,
-    seller: false,
-    stock: false,
+    videos: false,
+    keywords: false,
+    notes: false,
     custom_error: null
   };
   const [errors, setErrors] = useState(initialStateErrors);
@@ -40,36 +36,29 @@ export default function NewVideo() {
     event.preventDefault();
     let errors = initialStateErrors;
     let hasError = false;
-    if (inputs.name === "") {
-      errors.name = true;
+    if (inputs.title === "") {
+      errors.title = true;
       hasError = true;
     }
-    if (inputs.price === "") {
-      errors.price = true;
+    if (inputs.sno === "") {
+      errors.sno = true;
       hasError = true;
     }
     if (inputs.description === "") {
       errors.description = true;
       hasError = true;
     }
-    if (inputs.ratings < "1" || inputs.ratings > "5") {
-      errors.ratings = true;
+  
+    if (inputs.videos === "") {
+      errors.videos = true;
       hasError = true;
     }
-    if (inputs.images === "") {
-      errors.images = true;
+    if (inputs.keywords === "") {
+      errors.keywords = true;
       hasError = true;
     }
-    if (inputs.category === "select") {
-      errors.category = true;
-      hasError = true;
-    }
-    if (inputs.seller === "") {
-      errors.seller = true;
-      hasError = true;
-    }
-    if (inputs.stock === "") {
-      errors.stock = true;
+    if (inputs.notes === "") {
+      errors.notes = true;
       hasError = true;
     }
     if (!hasError && isAuthenticated() && isAdmin()) {
@@ -77,7 +66,7 @@ export default function NewVideo() {
       async function api() {
         try {
           NewVideoApi(inputs);
-          toast.success("Video Contact Successfully");
+          toast.success("Video Added Successfully");
         } catch (err) {
           setErrors(values => ({ ...values, custom_error: err }))
         } finally {
@@ -98,14 +87,12 @@ export default function NewVideo() {
 
   function handleReset() {
     setInputs({
-      name: "",
-      price: "",
+      title: "",
+      sno: "",
       description: "",
-      ratings: "",
-      images: "",
-      category: "select",
-      seller: "",
-      stock: ""
+      videos: "",
+      keywords: "",
+      notes: ""
     })
     toast.info("Reset Successfully");
   }
@@ -123,21 +110,21 @@ export default function NewVideo() {
             <form className="w-100" onSubmit={handleSubmit}>
 
               <div className="w-100 mt-3">
-                <label htmlFor="name" className="form-label">Video Name</label>
-                <input type="text" className="form-control" name="name" value={inputs.name} id="name" onChange={handleChange} placeholder="Enter Video Name" />
-                {errors.name ?
+                <label htmlFor="title" className="form-label">Video Title</label>
+                <input type="text" className="form-control" name="title" value={inputs.title} id="title" onChange={handleChange} placeholder="Enter Video Title" />
+                {errors.title ?
                   (<span className="text-danger bg-warning-subtle" >
-                    Video Name is required.
+                    Video Title is required.
                   </span>) : null
                 }
               </div>
 
               <div className="w-100 mt-3">
-                <label htmlFor="price" className="form-label">Video Price</label>
-                <input type="number" className="form-control" id="price" name="price" value={inputs.price} onChange={handleChange} placeholder="Enter Video Price" />
-                {errors.price ?
+                <label htmlFor="sno" className="form-label">Video S.No.</label>
+                <input type="number" className="form-control" id="sno" name="sno" value={inputs.sno} onChange={handleChange} placeholder="Enter Video S.No." />
+                {errors.sno ?
                   (<span className="text-danger bg-warning-subtle" >
-                    Video Price is required.
+                    Video S.No. is required.
                   </span>) : null
                 }
               </div>
@@ -153,19 +140,9 @@ export default function NewVideo() {
               </div>
 
               <div className="w-100 mt-3">
-                <label htmlFor="ratings" className="form-label">Ratings</label>
-                <input type="number" className="form-control" id="ratings" name="ratings" value={inputs.ratings} onChange={handleChange} placeholder="Enter Video Ratings" />
-                {errors.ratings ?
-                  (<span className="text-danger bg-warning-subtle" >
-                    Video Ratings is required 1 to 5.
-                  </span>) : null
-                }
-              </div>
-
-              <div className="w-100 mt-3">
-                <label htmlFor="images" className="form-label">Video Images URL</label>
-                <input type="url" className="form-control" id="images" name="images" value={inputs.images} onChange={handleChange} placeholder="Enter Video images URL" />
-                {errors.images ?
+                <label htmlFor="videos" className="form-label">Video Images URL</label>
+                <input type="url" className="form-control" id="videos" name="videos" value={inputs.videos} onChange={handleChange} placeholder="Enter Video videos URL" />
+                {errors.videos ?
                   (<span className="text-danger bg-warning-subtle" >
                     Video Images URL is required.
                   </span>) : null
@@ -173,36 +150,21 @@ export default function NewVideo() {
               </div>
 
               <div className="w-100 mt-3">
-                <label htmlFor="category" className="form-label">Video Category</label>
-                <select className='form-select' id="category" name="category" value={inputs.category} onChange={handleChange}>
-                  <option value="select">Select Category</option>
-                  <option value="Vegetarian">Vegetarian</option>
-                  <option value="Non-vegetarian">Non-vegetarian</option>
-                  <option value="Vegan">Vegan</option>
-                </select>
-                {errors.category ?
+                <label htmlFor="keywords" className="form-label">Keywords</label>
+                <input type="text" className="form-control" name="keywords" value={inputs.keywords} id="keywords" onChange={handleChange} placeholder="Enter Keywords Name" />
+                {errors.keywords ?
                   (<span className="text-danger bg-warning-subtle" >
-                    Video Category is required.
+                    Keywords Name is required.
                   </span>) : null
                 }
               </div>
 
               <div className="w-100 mt-3">
-                <label htmlFor="seller" className="form-label">Seller</label>
-                <input type="text" className="form-control" name="seller" value={inputs.seller} id="seller" onChange={handleChange} placeholder="Enter Seller Name" />
-                {errors.seller ?
+                <label htmlFor="notes" className="form-label">Video Notes</label>
+                <input type="text" className="form-control" id="notes" name="notes" value={inputs.notes} onChange={handleChange} placeholder="Enter Video Notes" />
+                {errors.notes ?
                   (<span className="text-danger bg-warning-subtle" >
-                    Seller Name is required.
-                  </span>) : null
-                }
-              </div>
-
-              <div className="w-100 mt-3">
-                <label htmlFor="stock" className="form-label">Video Stock</label>
-                <input type="number" className="form-control" id="stock" name="stock" value={inputs.stock} onChange={handleChange} placeholder="Enter Video Stock" />
-                {errors.stock ?
-                  (<span className="text-danger bg-warning-subtle" >
-                    Video stock is required.
+                    Video notes is required.
                   </span>) : null
                 }
               </div>
