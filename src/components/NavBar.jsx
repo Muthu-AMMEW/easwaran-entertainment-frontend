@@ -4,13 +4,21 @@ import { useNavigate } from "react-router-dom"; //removed ", Navigate"
 import { logout, isAuthenticated } from "../services/Auth"
 import "./Components.css";
 import UserDropDown from "./UserDropDown";
+import { useEffect } from "react";
+import { QuickStartApi } from "../services/Api";
 
 export default function NavBar({ cartItems }) {
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		QuickStartApi();
+	}, []);
+
 	const logoutUser = () => {
 		logout();
 		navigate('/login');
 	}
+
 	return (
 		<>
 			<div className="container-fluid">
@@ -69,7 +77,7 @@ export default function NavBar({ cartItems }) {
 									<li>
 										<hr className="dropdown-divider" />
 									</li>
-									
+
 									{!isAuthenticated() && <li> <Link to={"/login"} className="btn btn-outline-success ms-3">Login</Link>
 									</li>}
 								</ul>
@@ -80,7 +88,7 @@ export default function NavBar({ cartItems }) {
 							</li>
 
 						</ul>
-			
+
 						{isAuthenticated() && <div className="nav-link d-flex my-3 my-lg-0">
 							<UserDropDown />
 							<Link to={"/login"} className="mx-3" title="Logout" onClick={logoutUser}>

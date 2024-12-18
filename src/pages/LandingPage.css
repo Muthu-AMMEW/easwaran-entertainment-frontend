@@ -19,11 +19,17 @@
 }
 
 
-@media(max-width: 776px) {
+@media(max-width: 768px) {
     .welcome-message {
-        background-size: 100% auto;
         height: 400px;
     }
+}
+
+@media(max-width: 576px) {
+    .welcome-message {
+        height: 300px;
+    }
+
 }
 
 

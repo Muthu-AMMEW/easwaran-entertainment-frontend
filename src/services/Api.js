@@ -11,6 +11,7 @@ const FORGET_PASSWORD_URL = FIRE_BASE_URL+`/accounts:sendOobCode?key=${API_KEY}`
 
 const M_BASE_URL = process.env.REACT_APP_API_URL;
 const M_REGISTER_URL = M_BASE_URL + `/signup`;
+const QUICK_START_URL = M_BASE_URL + '/quickstart';
 const M_USER_DETAILS_URL = M_BASE_URL + '/userdetails';
 const UPDATE_PROFILE_URL = M_BASE_URL + '/user/updateprofile';
 const VIDEO_DETAILS_URL = M_BASE_URL + '/videodetails/';
@@ -34,6 +35,10 @@ export const RegisterApi = (inputs) => {
 export const M_RegisterApi = (inputs, fireRegister) => {
     let data = { fullName: inputs.fullName, email: inputs.email, pno: inputs.pno, address: inputs.address, localId: fireRegister.data.localId }
     return axios.post(M_REGISTER_URL, data)
+}
+
+export const QuickStartApi = () => {
+    return axios.post(QUICK_START_URL)
 }
 
 export const LoginApi = (inputs) => {
@@ -103,7 +108,6 @@ export const ContactIdDetailsApi =(searchParams) => {
 export const ContactDetailsApi = (searchParams) => {
     return axios.get(CONTACT_DETAILS_URL+searchParams)
 }
-
 
 export const DeleteVideoApi =(id)=>{
     return axios.delete(DELETE_VIDEO_URL+id)

@@ -5,7 +5,7 @@ export default function LandingPage() {
   return (
     <>
     <div className="main-body container-fluid p-0">
-        <div className="row">
+        <div className="row m-0">
             {/* <!-- Body left side start --> */}
             <div className="welcome-message col-md-4 position-relative">
                 <div className="mm-center">
