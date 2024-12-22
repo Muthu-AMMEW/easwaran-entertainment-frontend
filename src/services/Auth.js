@@ -6,7 +6,7 @@ export const isAuthenticated = () => {
 }
 
 export const isAdmin = () => {
-    return getAdminData();
+    return getAdminData() === "true" ? true: false;
 }
 
 export const logout = () => {
