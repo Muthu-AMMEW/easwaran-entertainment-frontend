@@ -1,7 +1,7 @@
 import './LoginPage.css';
 
 import { useState } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { LoginApi, M_UserDetailsApi } from '../../services/Api';
 import { storeAdminData, storeUserData } from '../../services/Storage';
 import { isAuthenticated } from '../../services/Auth';
@@ -139,7 +139,6 @@ export default function LoginPage() {
                                 <button className="btn btn-primary me-5" type="submit">Submit</button>
                                 <button className="btn btn-danger" type="reset" onClick={handleReset}>Reset</button>
                             </div>
-                            <div className="text-center mt-4">Do not have an account? <Link className="fw-bold" to="/signup">Sign up</Link></div>
                         </form>
                     </div>
                 </div>
