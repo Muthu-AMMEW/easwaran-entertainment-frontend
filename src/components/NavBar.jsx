@@ -78,7 +78,7 @@ export default function NavBar({ cartItems }) {
 										<hr className="dropdown-divider" />
 									</li>
 
-									{!isAuthenticated() && <li> <Link to={"/login"} className="btn btn-outline-success ms-3">Login</Link>
+									{!isAuthenticated() && <li> <Link to={"/login"} className="btn btn-outline-success ms-3">Admin Login</Link>
 									</li>}
 								</ul>
 							</li>
