@@ -72,7 +72,7 @@ export default function Contact() {
             <div className="w-100"></div>
             <div className="col-md-3">
               <label className="form-label" htmlFor="pno">Phone Number</label>
-              <input className="form-control" type="text" id="pno" name="pno" value={inputs.pno} onChange={handleChange} />
+              <input className="form-control" type="number" id="pno" name="pno" value={inputs.pno} onChange={handleChange} />
             </div>
 
             <div className="col-md-3">
